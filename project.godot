@@ -1,0 +1,11 @@
+config_version=3
+
+[application]
+
+config/name="Ludum Dare 42"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/height=768
+window/size/resizable=false
