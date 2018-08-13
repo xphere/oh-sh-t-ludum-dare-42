@@ -22,7 +22,7 @@ func _input(event):
 			$Cursor.position = mouse_position
 		return
 
-	if event is InputEventMouseButton and state == State.PLACING:
+	if event is InputEventMouseButton and (state == State.PLACING or state == State.PICKED):
 		if event.button_index == BUTTON_RIGHT and event.is_pressed():
 			$Cursor.rotation_degrees += 90
 			for child in $Cursor/Placeholder.get_children():
@@ -73,6 +73,7 @@ func _on_InputTrack_balloon_clicked(balloon):
 		balloon.get_meta("piece_index"),
 		balloon.get_meta("piece_color")
 	)
+	placeholder.modulate = Color(1.0, 1.0, 1.0, 0.75)
 	placeholder.set_name("Placeholder")
 	placeholder.set_meta("piece_color", balloon.get_meta("piece_color"))
 	$Cursor.add_child(placeholder)

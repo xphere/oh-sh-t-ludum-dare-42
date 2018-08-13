@@ -56,9 +56,7 @@ _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 CELL_WIDTH = 7
 CELL_HEIGHT = 7
 
-[node name="Cursor" type="Position2D" parent="." index="4"]
-
-[node name="InputTrack" type="VBoxContainer" parent="." index="5"]
+[node name="InputTrack" type="VBoxContainer" parent="." index="4"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -78,6 +76,8 @@ size_flags_vertical = 1
 alignment = 2
 script = ExtResource( 5 )
 _sections_unfolded = [ "Grow Direction", "Rect" ]
+
+[node name="Cursor" type="Position2D" parent="." index="5"]
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
