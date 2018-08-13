@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/wall.png" type="Texture" id=3]
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=5]
+[ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=6]
+[ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=7]
 
 [node name="Game" type="Node" index="0"]
 
@@ -55,8 +57,20 @@ position = Vector2( 51, 47 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 CELL_WIDTH = 7
 CELL_HEIGHT = 7
+THRESHOLD = 10
 
-[node name="InputTrack" type="VBoxContainer" parent="." index="4"]
+[node name="Worker" parent="." index="4" instance=ExtResource( 5 )]
+
+editor/display_folded = true
+position = Vector2( 18, 59 )
+
+[node name="Balloon" type="Sprite" parent="Worker" index="1"]
+
+visible = false
+position = Vector2( 7, -16 )
+texture = ExtResource( 6 )
+
+[node name="InputTrack" type="VBoxContainer" parent="." index="5"]
 
 editor/display_folded = true
 anchor_left = 0.0
@@ -74,12 +88,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 2
-script = ExtResource( 5 )
+script = ExtResource( 7 )
 _sections_unfolded = [ "Grow Direction", "Rect" ]
 
-[node name="Cursor" type="Position2D" parent="." index="5"]
+[node name="Cursor" type="Position2D" parent="." index="6"]
 
-[node name="Timer" type="Timer" parent="." index="6"]
+[node name="Timer" type="Timer" parent="." index="7"]
 
 process_mode = 1
 wait_time = 5.0
@@ -89,6 +103,8 @@ autostart = true
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
 [connection signal="mouse_exited" from="Grid" to="." method="_on_Grid_mouse_exited"]
+
+[connection signal="running_out_of_space" from="Grid" to="." method="_on_Grid_running_out_of_space"]
 
 [connection signal="balloon_clicked" from="InputTrack" to="." method="_on_InputTrack_balloon_clicked"]
 

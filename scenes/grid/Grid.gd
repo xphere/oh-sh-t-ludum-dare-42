@@ -4,8 +4,12 @@ export(int) var CELL_WIDTH = 8
 export(int) var CELL_HEIGHT = 8
 export(int) var WIDTH = 8
 export(int) var HEIGHT = 8
+export(int) var THRESHOLD = 10
 
 var cells = {}
+var total_count
+
+signal running_out_of_space()
 
 
 func _ready():
@@ -16,6 +20,7 @@ func generate_cells():
 	var cell
 	var Cell = preload("Cell.tscn")
 
+	var count = 0
 	for y in range(0, HEIGHT):
 		for x in range(0, WIDTH):
 			cell = Cell.instance()
@@ -23,9 +28,11 @@ func generate_cells():
 			cell.show_behind_parent = true
 			cells[Vector2(x, y)] = cell
 			add_child(cell)
+			count += 1
 
 	$Collision.position = Vector2(WIDTH * CELL_WIDTH / 2, HEIGHT * CELL_HEIGHT / 2)
 	$Collision.scale = $Collision.position
+	total_count = count
 
 
 func check_cells(node):
@@ -50,6 +57,10 @@ func check_cells(node):
 func put_cells(node, color):
 	for child in node.get_children():
 		cell_at(child.global_position).set(color)
+		total_count -= 1
+
+	if total_count < THRESHOLD:
+		emit_signal("running_out_of_space")
 
 
 func raw_cell_index_at(_global_position):

@@ -82,3 +82,7 @@ func _on_InputTrack_balloon_clicked(balloon):
 
 func _on_Timer_timeout():
 	$InputTrack.new_random_input()
+
+
+func _on_Grid_running_out_of_space():
+	$Worker/Balloon.visible = true
