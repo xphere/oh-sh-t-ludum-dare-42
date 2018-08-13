@@ -74,6 +74,6 @@ func on_mouse_leave():
 func to_cell_index(position):
 	var local_pick = position - global_position
 	return Vector2(
-		floor(local_pick.x / CELL_WIDTH),
-		floor(local_pick.y / CELL_HEIGHT)
+		clamp(floor(local_pick.x / CELL_WIDTH), 0, WIDTH - 1),
+		clamp(floor(local_pick.y / CELL_HEIGHT), 0, HEIGHT - 1)
 	)
