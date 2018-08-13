@@ -23,15 +23,24 @@ func _input(event):
 		return
 
 	if event is InputEventMouseButton and state == State.PLACING:
-		if event.button_index != BUTTON_LEFT or not event.is_pressed() or not correct:
+		if event.button_index == BUTTON_RIGHT and event.is_pressed():
+			$Cursor.rotation_degrees += 90
+			for child in $Cursor/Placeholder.get_children():
+				child.rotation_degrees -= 90
+			last_mouse_position = null
 			return
 
-		$Grid.put_cells(
-			$Cursor/Placeholder,
-			$Cursor/Placeholder.get_meta("piece_color")
-		)
-		$Cursor/Placeholder.queue_free()
-		state = State.IDLE
+		if event.button_index == BUTTON_LEFT and event.is_pressed():
+			if not correct:
+				return
+
+			$Grid.put_cells(
+				$Cursor/Placeholder,
+				$Cursor/Placeholder.get_meta("piece_color")
+			)
+			$Cursor/Placeholder.queue_free()
+			$Cursor.rotation_degrees = 0
+			state = State.IDLE
 
 
 func _process(delta):

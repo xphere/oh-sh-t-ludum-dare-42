@@ -19,7 +19,7 @@ func generate_cells():
 	for y in range(0, HEIGHT):
 		for x in range(0, WIDTH):
 			cell = Cell.instance()
-			cell.position = Vector2(x * CELL_WIDTH, y * CELL_HEIGHT)
+			cell.position = Vector2(1 + CELL_WIDTH / 2 + x * CELL_WIDTH, 1 + CELL_HEIGHT / 2 + y * CELL_HEIGHT)
 			cell.show_behind_parent = true
 			cells[Vector2(x, y)] = cell
 			add_child(cell)

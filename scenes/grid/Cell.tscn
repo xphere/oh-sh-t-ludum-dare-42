@@ -4,14 +4,13 @@
 [ext_resource path="res://scenes/grid/cell.png" type="Texture" id=2]
 [ext_resource path="res://scenes/grid/bits.png" type="Texture" id=3]
 
-[node name="Cell" type="Node2D" index="0"]
+[node name="Cell" type="Node2D"]
 
 script = ExtResource( 1 )
 
 [node name="Floor" type="Sprite" parent="." index="0"]
 
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -20,9 +19,8 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 visible = false
 texture = ExtResource( 3 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
-_sections_unfolded = [ "Region" ]
+_sections_unfolded = [ "Offset", "Region" ]
 
 

@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/game/BitFactory.gd" type="Script" id=1]
 [ext_resource path="res://scenes/grid/bits.png" type="Texture" id=2]
 
-[node name="BitFactory" type="Node"]
+[node name="BitFactory" type="Node" index="0"]
 
 script = ExtResource( 1 )
 
@@ -11,42 +11,38 @@ script = ExtResource( 1 )
 
 editor/display_folded = true
 visible = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite#1" type="Sprite" parent="Bit#1" index="0"]
 
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset" ]
 
 [node name="Bit#2" type="Node2D" parent="." index="1"]
 
-editor/display_folded = true
-visible = false
+_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite#1" type="Sprite" parent="Bit#2" index="0"]
 
-position = Vector2( -7, 0 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
-_sections_unfolded = [ "Offset" ]
+_sections_unfolded = [ "Offset", "Transform" ]
 
 [node name="Sprite#2" type="Sprite" parent="Bit#2" index="1"]
 
+position = Vector2( 0, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
 
 [node name="Sprite#3" type="Sprite" parent="Bit#2" index="2"]
 
-position = Vector2( 0, 7 )
+position = Vector2( 7, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -59,7 +55,6 @@ visible = false
 [node name="Sprite#1" type="Sprite" parent="Bit#3" index="0"]
 
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -68,7 +63,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 7, 0 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -77,7 +71,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 0, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -86,7 +79,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 7, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -100,7 +92,6 @@ visible = false
 
 position = Vector2( -7, 0 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -108,7 +99,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 [node name="Sprite#2" type="Sprite" parent="Bit#4" index="1"]
 
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -117,7 +107,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 0, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -126,7 +115,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 7, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -139,7 +127,6 @@ visible = false
 [node name="Sprite#1" type="Sprite" parent="Bit#5" index="0"]
 
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -148,7 +135,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 7, 0 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -157,7 +143,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( -7, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
@@ -166,7 +151,6 @@ _sections_unfolded = [ "Offset", "Region" ]
 
 position = Vector2( 0, 7 )
 texture = ExtResource( 2 )
-centered = false
 region_enabled = true
 region_rect = Rect2( 0, 0, 8, 8 )
 _sections_unfolded = [ "Offset", "Region" ]
