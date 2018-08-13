@@ -1,15 +1,10 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=2]
 [ext_resource path="res://scenes/game/wall.png" type="Texture" id=3]
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/grid/bits.png" type="Texture" id=5]
-
-[sub_resource type="CircleShape2D" id=1]
-
-custom_solver_bias = 0.0
-radius = 4.0
+[ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=5]
 
 [node name="Game" type="Node" index="0"]
 
@@ -63,42 +58,31 @@ CELL_HEIGHT = 7
 
 [node name="Cursor" type="Position2D" parent="." index="4"]
 
-[node name="Placeholder" type="Sprite" parent="Cursor" index="0"]
+[node name="InputTrack" type="VBoxContainer" parent="." index="5"]
 
-visible = false
-texture = ExtResource( 5 )
-centered = false
-region_enabled = true
-region_rect = Rect2( 0, 0, 8, 8 )
-_sections_unfolded = [ "Offset", "Region" ]
-
-[node name="Piece" type="StaticBody2D" parent="." index="5"]
-
-position = Vector2( 134, 52 )
-input_pickable = true
-collision_layer = 1
-collision_mask = 1
-constant_linear_velocity = Vector2( 0, 0 )
-constant_angular_velocity = 0.0
-friction = 1.0
-bounce = 0.0
-_sections_unfolded = [ "Pickable" ]
-
-[node name="Bit" type="Sprite" parent="Piece" index="0"]
-
-texture = ExtResource( 5 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 8, 8 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
-
-[node name="Collision" type="CollisionShape2D" parent="Piece" index="1"]
-
-shape = SubResource( 1 )
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 144.0
+margin_top = 19.0
+margin_right = -483.0
+margin_bottom = -362.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 2
+script = ExtResource( 5 )
+_sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
 [connection signal="mouse_exited" from="Grid" to="." method="_on_Grid_mouse_exited"]
 
-[connection signal="input_event" from="Piece" to="." method="_on_Piece_input_event"]
+[connection signal="balloon_clicked" from="InputTrack" to="." method="_on_InputTrack_balloon_clicked"]
 
 
