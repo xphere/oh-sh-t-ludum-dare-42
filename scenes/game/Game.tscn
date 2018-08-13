@@ -79,10 +79,19 @@ _sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [node name="Cursor" type="Position2D" parent="." index="5"]
 
+[node name="Timer" type="Timer" parent="." index="6"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
 [connection signal="mouse_exited" from="Grid" to="." method="_on_Grid_mouse_exited"]
 
 [connection signal="balloon_clicked" from="InputTrack" to="." method="_on_InputTrack_balloon_clicked"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 
 

@@ -78,3 +78,7 @@ func _on_InputTrack_balloon_clicked(balloon):
 	placeholder.set_meta("piece_color", balloon.get_meta("piece_color"))
 	$Cursor.add_child(placeholder)
 	balloon.delete()
+
+
+func _on_Timer_timeout():
+	$InputTrack.new_random_input()

@@ -1,5 +1,7 @@
 extends VBoxContainer
 
+const MAX_ALLOWED = 6
+
 signal balloon_clicked(balloon)
 
 onready var factory = preload("res://scenes/game/PieceFactory.tscn").instance()
@@ -8,15 +10,14 @@ onready var TextBalloon = preload("res://scenes/gui/TextBalloon.tscn")
 
 func _ready():
 	randomize()
-	new_random_input()
-	new_random_input()
-	new_random_input()
-	new_random_input()
-	new_random_input()
-	new_random_input()
+	for index in range(0, MAX_ALLOWED):
+		new_random_input()
 
 
 func new_random_input():
+	if get_child_count() >= MAX_ALLOWED:
+		return
+
 	var balloon = TextBalloon.instance()
 	var input = factory.random()
 	balloon.set(input)
