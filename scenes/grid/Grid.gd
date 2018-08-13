@@ -2,14 +2,23 @@ extends StaticBody2D
 
 const CELL_WIDTH = 64
 const CELL_HEIGHT = 64
-const WIDTH = 12
+const WIDTH = 8
 const HEIGHT = 8
 
 var cells = {}
+var tracking = false
 
 
 func _ready():
 	generate_cells()
+
+
+func _input(event):
+	if event is InputEventMouseButton and tracking and event.button_index == BUTTON_LEFT and event.is_pressed():
+		var index = to_cell_index(
+			get_viewport().get_mouse_position()
+		)
+		cells[index].toggle()
 
 
 func generate_cells():
@@ -37,8 +46,16 @@ func remove_cells():
 
 
 func on_mouse_enter():
-	print("Hover!")
+	tracking = true
 
 
 func on_mouse_leave():
-	print("Leaving!")
+	tracking = false
+
+
+func to_cell_index(position):
+	var local_pick = position - global_position
+	return Vector2(
+		floor(local_pick.x / CELL_WIDTH),
+		floor(local_pick.y / CELL_HEIGHT)
+	)
