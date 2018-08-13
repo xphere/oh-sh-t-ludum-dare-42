@@ -20,6 +20,23 @@ func _input(event):
 		)
 		cells[index].toggle()
 
+	if tracking and event is InputEventMouseMotion:
+		update()
+
+
+func _draw():
+	if tracking:
+		var index = to_cell_index(
+			get_viewport().get_mouse_position()
+		)
+		draw_rect(
+			Rect2(
+				cells[index].position,
+				Vector2(CELL_WIDTH, CELL_HEIGHT)
+			),
+			Color(1, 0, 0, 1)
+		)
+
 
 func generate_cells():
 	var cell
@@ -31,6 +48,7 @@ func generate_cells():
 			cell.width = CELL_WIDTH
 			cell.height = CELL_HEIGHT
 			cell.position = Vector2(x * CELL_WIDTH, y * CELL_HEIGHT)
+			cell.show_behind_parent = true
 			cells[Vector2(x, y)] = cell
 			add_child(cell)
 
