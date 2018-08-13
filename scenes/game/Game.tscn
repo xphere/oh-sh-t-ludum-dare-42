@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=2]
@@ -7,6 +7,30 @@
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=6]
 [ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/piece-arrived.wav" type="AudioStream" id=8]
+[ext_resource path="res://scenes/game/piece-placed.wav" type="AudioStream" id=9]
+[ext_resource path="res://scenes/game/piece-wrong.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/game/piece-rotated.wav" type="AudioStream" id=11]
+
+[sub_resource type="AudioStreamRandomPitch" id=1]
+
+audio_stream = ExtResource( 8 )
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=2]
+
+audio_stream = ExtResource( 9 )
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=3]
+
+audio_stream = ExtResource( 10 )
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+
+audio_stream = ExtResource( 11 )
+random_pitch = 1.1
 
 [node name="Game" type="Node" index="0"]
 
@@ -96,9 +120,47 @@ _sections_unfolded = [ "Grow Direction", "Rect" ]
 [node name="Timer" type="Timer" parent="." index="7"]
 
 process_mode = 1
-wait_time = 5.0
+wait_time = 2.0
 one_shot = false
 autostart = true
+
+[node name="Sound" type="Node" parent="." index="8"]
+
+[node name="PieceArrived" type="AudioStreamPlayer" parent="Sound" index="0"]
+
+stream = SubResource( 1 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PiecePlaced" type="AudioStreamPlayer" parent="Sound" index="1"]
+
+stream = SubResource( 2 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PieceWrong" type="AudioStreamPlayer" parent="Sound" index="2"]
+
+stream = SubResource( 3 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="PieceRotated" type="AudioStreamPlayer" parent="Sound" index="3"]
+
+stream = SubResource( 4 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 

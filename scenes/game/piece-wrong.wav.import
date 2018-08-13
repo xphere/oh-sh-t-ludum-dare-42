@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/piece-wrong.wav-fb3f929aaf3da707a5d11091dcd4dd69.sample"
+
+[deps]
+
+source_file="res://scenes/game/piece-wrong.wav"
+dest_files=[ "res://.import/piece-wrong.wav-fb3f929aaf3da707a5d11091dcd4dd69.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

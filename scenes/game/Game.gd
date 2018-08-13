@@ -24,6 +24,7 @@ func _input(event):
 
 	if event is InputEventMouseButton and (state == State.PLACING or state == State.PICKED):
 		if event.button_index == BUTTON_RIGHT and event.is_pressed():
+			$Sound/PieceRotated.play()
 			$Cursor.rotation_degrees += 90
 			for child in $Cursor/Placeholder.get_children():
 				child.rotation_degrees -= 90
@@ -32,8 +33,10 @@ func _input(event):
 
 		if event.button_index == BUTTON_LEFT and event.is_pressed():
 			if not correct:
+				if state == State.PLACING:
+					$Sound/PieceWrong.play()
 				return
-
+			$Sound/PiecePlaced.play()
 			$Grid.put_cells(
 				$Cursor/Placeholder,
 				$Cursor/Placeholder.get_meta("piece_color")
@@ -81,7 +84,8 @@ func _on_InputTrack_balloon_clicked(balloon):
 
 
 func _on_Timer_timeout():
-	$InputTrack.new_random_input()
+	if $InputTrack.new_random_input():
+		$Sound/PieceArrived.play()
 
 
 func _on_Grid_running_out_of_space():

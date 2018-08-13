@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/piece-placed.wav-71b86b6a9831966b71fa0a0d963ae5b0.sample"
+
+[deps]
+
+source_file="res://scenes/game/piece-placed.wav"
+dest_files=[ "res://.import/piece-placed.wav-71b86b6a9831966b71fa0a0d963ae5b0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

@@ -16,7 +16,7 @@ func _ready():
 
 func new_random_input():
 	if get_child_count() >= MAX_ALLOWED:
-		return
+		return false
 
 	var balloon = TextBalloon.instance()
 	var input = factory.random()
@@ -25,6 +25,7 @@ func new_random_input():
 	balloon.set_meta("piece_color", input.get_meta("piece_color"))
 	balloon.connect("gui_input", self, "gui_input", [balloon])
 	add_child(balloon)
+	return true
 
 
 func gui_input(event, balloon):
