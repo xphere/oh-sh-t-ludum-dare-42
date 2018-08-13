@@ -1,41 +1,15 @@
 extends StaticBody2D
 
-const CELL_WIDTH = 64
-const CELL_HEIGHT = 64
-const WIDTH = 8
-const HEIGHT = 8
+export(int) var CELL_WIDTH = 8
+export(int) var CELL_HEIGHT = 8
+export(int) var WIDTH = 8
+export(int) var HEIGHT = 8
 
 var cells = {}
-var tracking = false
 
 
 func _ready():
 	generate_cells()
-
-
-func _input(event):
-	if event is InputEventMouseButton and tracking and event.button_index == BUTTON_LEFT and event.is_pressed():
-		var index = to_cell_index(
-			get_viewport().get_mouse_position()
-		)
-		cells[index].toggle()
-
-	if tracking and event is InputEventMouseMotion:
-		update()
-
-
-func _draw():
-	if tracking:
-		var index = to_cell_index(
-			get_viewport().get_mouse_position()
-		)
-		draw_rect(
-			Rect2(
-				cells[index].position,
-				Vector2(CELL_WIDTH, CELL_HEIGHT)
-			),
-			Color(1, 0, 0, 1)
-		)
 
 
 func generate_cells():
@@ -45,8 +19,6 @@ func generate_cells():
 	for y in range(0, HEIGHT):
 		for x in range(0, WIDTH):
 			cell = Cell.instance()
-			cell.width = CELL_WIDTH
-			cell.height = CELL_HEIGHT
 			cell.position = Vector2(x * CELL_WIDTH, y * CELL_HEIGHT)
 			cell.show_behind_parent = true
 			cells[Vector2(x, y)] = cell
@@ -63,17 +35,13 @@ func remove_cells():
 	cells = {}
 
 
-func on_mouse_enter():
-	tracking = true
-
-
-func on_mouse_leave():
-	tracking = false
-
-
-func to_cell_index(position):
-	var local_pick = position - global_position
+func cell_index_at(_global_position):
+	var local_pick = _global_position - global_position
 	return Vector2(
 		clamp(floor(local_pick.x / CELL_WIDTH), 0, WIDTH - 1),
 		clamp(floor(local_pick.y / CELL_HEIGHT), 0, HEIGHT - 1)
 	)
+
+
+func cell_at(_global_position):
+	return cells[cell_index_at(_global_position)]
