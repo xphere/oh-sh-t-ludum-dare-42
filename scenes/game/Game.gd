@@ -2,7 +2,8 @@ extends Node
 
 enum State {
 	IDLE = 0,
-	PLACING = 1,
+	PICKED = 1,
+	PLACING = 2,
 }
 
 var state = State.IDLE
@@ -18,6 +19,7 @@ func _input(event):
 	if state == State.PLACING and event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.is_pressed():
 			$Grid.cell_at(mouse_position).toggle()
+			state = State.IDLE
 
 
 func _process(delta):
@@ -31,10 +33,20 @@ func _process(delta):
 
 
 func _on_Grid_mouse_entered():
-	state = State.PLACING
-	$Cursor/Placeholder.visible = true
+	if state == State.PICKED:
+		state = State.PLACING
+		$Cursor/Placeholder.visible = true
 
 
 func _on_Grid_mouse_exited():
-	state = State.IDLE
-	$Cursor/Placeholder.visible = false
+	if state == State.PLACING:
+		state = State.IDLE
+		$Cursor/Placeholder.visible = false
+
+
+func _on_Piece_input_event(viewport, event, shape_idx):
+	if not event is InputEventMouseButton:
+		return
+
+	if state == State.IDLE:
+		state = State.PICKED
