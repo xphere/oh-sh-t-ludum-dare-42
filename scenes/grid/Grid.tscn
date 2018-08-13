@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/grid/Grid.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+
+custom_solver_bias = 0.0
+extents = Vector2( 1, 1 )
+
+[node name="Grid" type="StaticBody2D" index="0"]
+
+position = Vector2( 64, 64 )
+input_pickable = true
+collision_layer = 1
+collision_mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+script = ExtResource( 1 )
+_sections_unfolded = [ "Pickable", "Transform" ]
+
+[node name="Collision" type="CollisionShape2D" parent="." index="0"]
+
+shape = SubResource( 1 )
+_sections_unfolded = [ "Transform" ]
+
+[connection signal="mouse_entered" from="." to="." method="on_mouse_enter"]
+
+[connection signal="mouse_exited" from="." to="." method="on_mouse_leave"]
+
+
