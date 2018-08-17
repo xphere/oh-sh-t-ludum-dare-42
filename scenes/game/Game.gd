@@ -13,6 +13,7 @@ var state = State.IDLE
 var mouse_position
 var last_mouse_position
 var correct = false
+var currently_placing
 
 
 func _input(event):
@@ -44,6 +45,8 @@ func _input(event):
 			$Cursor/Placeholder.queue_free()
 			$Cursor.rotation_degrees = 0
 			state = State.IDLE
+			currently_placing.delete()
+			currently_placing = null
 
 
 func _process(delta):
@@ -68,8 +71,14 @@ func _on_Grid_mouse_exited():
 
 
 func _on_InputTrack_balloon_clicked(balloon):
-	if state != State.IDLE:
+	if not state in [State.IDLE, State.PICKED]:
 		return
+
+	for child in $Cursor.get_children():
+		$Cursor.remove_child(child)
+		child.queue_free()
+	$Cursor.rotation_degrees = 0
+
 	correct = false
 	state = State.PICKED
 	var placeholder = bitFactory.create(
@@ -80,7 +89,7 @@ func _on_InputTrack_balloon_clicked(balloon):
 	placeholder.set_name("Placeholder")
 	placeholder.set_meta("piece_color", balloon.get_meta("piece_color"))
 	$Cursor.add_child(placeholder)
-	balloon.delete()
+	currently_placing = balloon
 
 
 func _on_Timer_timeout():
