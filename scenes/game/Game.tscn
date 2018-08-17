@@ -133,7 +133,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sound"
 
 [node name="PiecePlaced" type="AudioStreamPlayer" parent="Sound" index="1"]
 
@@ -142,7 +142,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sound"
 
 [node name="PieceWrong" type="AudioStreamPlayer" parent="Sound" index="2"]
 
@@ -151,7 +151,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sound"
 
 [node name="PieceRotated" type="AudioStreamPlayer" parent="Sound" index="3"]
 
@@ -160,7 +160,7 @@ volume_db = 0.0
 pitch_scale = 1.0
 autoplay = false
 mix_target = 0
-bus = "Master"
+bus = "Sound"
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
