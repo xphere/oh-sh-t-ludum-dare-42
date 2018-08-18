@@ -1,4 +1,4 @@
-extends Node
+extends Node2D
 
 func create(index, color):
 	var clone = get_child(index).duplicate()

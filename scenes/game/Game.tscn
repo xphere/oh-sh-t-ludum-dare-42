@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=2]
@@ -7,29 +7,36 @@
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=6]
 [ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=7]
-[ext_resource path="res://scenes/game/piece-arrived.wav" type="AudioStream" id=8]
-[ext_resource path="res://scenes/game/piece-placed.wav" type="AudioStream" id=9]
-[ext_resource path="res://scenes/game/piece-wrong.wav" type="AudioStream" id=10]
-[ext_resource path="res://scenes/game/piece-rotated.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/game/Cursor.gd" type="Script" id=8]
+[ext_resource path="res://scenes/game/piece-arrived.wav" type="AudioStream" id=9]
+[ext_resource path="res://scenes/game/piece-placed.wav" type="AudioStream" id=10]
+[ext_resource path="res://scenes/game/piece-wrong.wav" type="AudioStream" id=11]
+[ext_resource path="res://scenes/game/piece-rotated.wav" type="AudioStream" id=12]
+[ext_resource path="res://scenes/game/FiniteStateMachine.gd" type="Script" id=13]
+[ext_resource path="res://scenes/game/Idle.gd" type="Script" id=14]
+[ext_resource path="res://scenes/game/PiecePicked.gd" type="Script" id=15]
+[ext_resource path="res://scenes/game/BitFactory.tscn" type="PackedScene" id=16]
+[ext_resource path="res://scenes/game/PiecePlacing.gd" type="Script" id=17]
 
 [sub_resource type="AudioStreamRandomPitch" id=1]
 
-audio_stream = ExtResource( 8 )
-random_pitch = 1.1
-
-[sub_resource type="AudioStreamRandomPitch" id=2]
-
 audio_stream = ExtResource( 9 )
 random_pitch = 1.1
+_sections_unfolded = [ "Resource" ]
 
-[sub_resource type="AudioStreamRandomPitch" id=3]
+[sub_resource type="AudioStreamRandomPitch" id=2]
 
 audio_stream = ExtResource( 10 )
 random_pitch = 1.1
 
-[sub_resource type="AudioStreamRandomPitch" id=4]
+[sub_resource type="AudioStreamRandomPitch" id=3]
 
 audio_stream = ExtResource( 11 )
+random_pitch = 1.1
+
+[sub_resource type="AudioStreamRandomPitch" id=4]
+
+audio_stream = ExtResource( 12 )
 random_pitch = 1.1
 
 [node name="Game" type="Node" index="0"]
@@ -96,7 +103,6 @@ texture = ExtResource( 6 )
 
 [node name="InputTrack" type="VBoxContainer" parent="." index="5"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -116,6 +122,10 @@ script = ExtResource( 7 )
 _sections_unfolded = [ "Grow Direction", "Rect" ]
 
 [node name="Cursor" type="Position2D" parent="." index="6"]
+
+modulate = Color( 1, 1, 1, 0.737255 )
+script = ExtResource( 8 )
+_sections_unfolded = [ "Visibility" ]
 
 [node name="Timer" type="Timer" parent="." index="7"]
 
@@ -162,6 +172,28 @@ autoplay = false
 mix_target = 0
 bus = "Sound"
 
+[node name="States" type="Node" parent="." index="9"]
+
+script = ExtResource( 13 )
+root = ".."
+
+[node name="Idle" type="Node" parent="States" index="0"]
+
+script = ExtResource( 14 )
+
+[node name="PiecePicked" type="Node" parent="States" index="1"]
+
+editor/display_folded = true
+script = ExtResource( 15 )
+
+[node name="BitFactory" parent="States/PiecePicked" index="0" instance=ExtResource( 16 )]
+
+visible = false
+
+[node name="PiecePlacing" type="Node" parent="States" index="2"]
+
+script = ExtResource( 17 )
+
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
 [connection signal="mouse_exited" from="Grid" to="." method="_on_Grid_mouse_exited"]
@@ -171,5 +203,13 @@ bus = "Sound"
 [connection signal="balloon_clicked" from="InputTrack" to="." method="_on_InputTrack_balloon_clicked"]
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+[connection signal="piece_rotated" from="States/PiecePicked" to="." method="_on_piece_rotated"]
+
+[connection signal="piece_placed" from="States/PiecePlacing" to="." method="_on_piece_placed"]
+
+[connection signal="piece_rotated" from="States/PiecePlacing" to="." method="_on_piece_rotated"]
+
+[connection signal="piece_wrong_placed" from="States/PiecePlacing" to="." method="_on_piece_wrong_placed"]
 
 

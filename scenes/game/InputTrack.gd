@@ -21,7 +21,7 @@ func new_random_input():
 	var balloon = TextBalloon.instance()
 	var input = factory.random()
 	balloon.set(input)
-	balloon.set_meta("piece_index", input.get_meta("piece_index"))
+	balloon.set_meta("piece_shape", input.get_meta("piece_index"))
 	balloon.set_meta("piece_color", input.get_meta("piece_color"))
 	balloon.connect("gui_input", self, "gui_input", [balloon])
 	add_child(balloon)

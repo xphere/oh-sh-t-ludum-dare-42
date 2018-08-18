@@ -3,7 +3,7 @@
 [ext_resource path="res://scenes/game/BitFactory.gd" type="Script" id=1]
 [ext_resource path="res://scenes/grid/bits.png" type="Texture" id=2]
 
-[node name="BitFactory" type="Node" index="0"]
+[node name="BitFactory" type="Node2D"]
 
 script = ExtResource( 1 )
 
@@ -22,6 +22,8 @@ _sections_unfolded = [ "Offset" ]
 
 [node name="Bit#2" type="Node2D" parent="." index="1"]
 
+editor/display_folded = true
+visible = false
 _sections_unfolded = [ "Transform" ]
 
 [node name="Sprite#1" type="Sprite" parent="Bit#2" index="0"]
