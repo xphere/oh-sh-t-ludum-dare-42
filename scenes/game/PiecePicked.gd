@@ -48,3 +48,7 @@ func set_picked(input):
 	var color = picked.get_meta("piece_color")
 	cursor.set_placeholder($BitFactory.create(shape, color))
 	emit_signal("piece_picked", shape, color)
+
+
+func clean():
+	picked = null

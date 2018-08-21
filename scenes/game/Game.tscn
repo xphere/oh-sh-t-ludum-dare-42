@@ -231,6 +231,8 @@ script = ExtResource( 18 )
 
 [connection signal="piece_placed" from="States/PiecePlacing" to="." method="_on_piece_placed"]
 
+[connection signal="piece_placed" from="States/PiecePlacing" to="States/PiecePicked" method="clean"]
+
 [connection signal="piece_rotated" from="States/PiecePlacing" to="." method="_on_piece_rotated"]
 
 [connection signal="piece_wrong_placed" from="States/PiecePlacing" to="." method="_on_piece_wrong_placed"]
