@@ -14,7 +14,6 @@ func enter(root, input):
 	root.connect("right_click", self, "_on_right_click")
 
 	cursor = root.get_node("Cursor")
-
 	if picked != input:
 		set_picked(input)
 

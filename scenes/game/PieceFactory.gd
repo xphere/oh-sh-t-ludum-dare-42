@@ -7,14 +7,16 @@ const COLORS = [
 ]
 
 
-func random():
-	var index = randi() % get_child_count()
-	var prototype = get_child(index)
+func create_random(balloon):
+	var shape = randi() % get_child_count()
+	var prototype = get_child(shape)
 	var clone = prototype.duplicate()
 	var color = randi() % 3
 	clone.modulate = COLORS[color]
-	clone.set_meta("piece_index", index)
-	clone.set_meta("piece_color", color)
 	clone.visible = true
+
+	balloon.set(clone)
+	balloon.set_meta("piece_shape", shape)
+	balloon.set_meta("piece_color", color)
 
 	return clone

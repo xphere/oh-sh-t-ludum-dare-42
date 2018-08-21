@@ -1,14 +1,14 @@
 extends Container
 
-func set(node):
-	for child in $Patch.get_children():
-		$Patch.remove_child(child)
-		child.queue_free()
-	add(node)
-	
+var content
 
-func add(node):
+
+func set(node):
+	if content:
+		content.queue_free()
+		$Patch.remove_child(content)
 	$Patch.add_child(node)
+	content = node
 
 
 func delete():

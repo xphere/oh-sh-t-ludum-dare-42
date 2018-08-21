@@ -42,11 +42,6 @@ func _on_InputTrack_balloon_clicked(input):
 	emit_signal("select_input", input)
 
 
-func _on_Timer_timeout():
-	if $InputTrack.new_random_input():
-		$Sound/PieceArrived.play()
-
-
 func _on_Grid_running_out_of_space():
 	$Worker/Balloon.visible = true
 
@@ -61,3 +56,7 @@ func _on_piece_placed():
 
 func _on_piece_wrong_placed():
 	$Sound/PieceWrong.play()
+
+
+func _on_balloon_added(balloon):
+	$Sound/PieceArrived.play()
