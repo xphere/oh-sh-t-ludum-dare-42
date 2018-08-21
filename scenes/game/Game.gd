@@ -9,8 +9,6 @@ signal select_input(input)
 
 
 var mouse_position
-var correct = false
-var currently_placing
 
 
 func _ready():

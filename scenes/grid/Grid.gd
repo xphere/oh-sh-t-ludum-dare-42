@@ -18,22 +18,18 @@ func _ready():
 
 
 func generate_cells():
-	var cell
 	var Cell = preload("Cell.tscn")
-
-	var count = 0
 	for y in range(0, HEIGHT):
 		for x in range(0, WIDTH):
-			cell = Cell.instance()
+			var cell = Cell.instance()
 			cell.position = Vector2(1 + CELL_WIDTH / 2 + x * CELL_WIDTH, 1 + CELL_HEIGHT / 2 + y * CELL_HEIGHT)
 			cell.show_behind_parent = true
 			cells[Vector2(x, y)] = cell
 			add_child(cell)
-			count += 1
 
 	$Collision.position = Vector2(WIDTH * CELL_WIDTH / 2, HEIGHT * CELL_HEIGHT / 2)
 	$Collision.scale = $Collision.position + COLISION_MARGIN
-	total_count = count
+	total_count = cells.size()
 
 
 func check_cells(node):

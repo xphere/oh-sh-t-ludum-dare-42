@@ -23,12 +23,12 @@ func new_random_input():
 	balloon.set(input)
 	balloon.set_meta("piece_shape", input.get_meta("piece_index"))
 	balloon.set_meta("piece_color", input.get_meta("piece_color"))
-	balloon.connect("gui_input", self, "gui_input", [balloon])
+	balloon.connect("gui_input", self, "_on_gui_input", [balloon])
 	add_child(balloon)
 	return true
 
 
-func gui_input(event, balloon):
+func _on_gui_input(event, balloon):
 	if not event is InputEventMouseButton:
 		return
 
