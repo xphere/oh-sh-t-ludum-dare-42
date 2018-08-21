@@ -4,6 +4,7 @@ export(int) var CELL_WIDTH = 8
 export(int) var CELL_HEIGHT = 8
 export(int) var WIDTH = 8
 export(int) var HEIGHT = 8
+export(Vector2) var COLISION_MARGIN = Vector2(3, 3)
 export(int) var THRESHOLD = 10
 
 var cells = {}
@@ -31,7 +32,7 @@ func generate_cells():
 			count += 1
 
 	$Collision.position = Vector2(WIDTH * CELL_WIDTH / 2, HEIGHT * CELL_HEIGHT / 2)
-	$Collision.scale = $Collision.position
+	$Collision.scale = $Collision.position + COLISION_MARGIN
 	total_count = count
 
 

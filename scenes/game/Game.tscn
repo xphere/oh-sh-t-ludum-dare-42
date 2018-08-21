@@ -88,6 +88,7 @@ position = Vector2( 51, 47 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 CELL_WIDTH = 7
 CELL_HEIGHT = 7
+COLISION_MARGIN = Vector2( 3, 3 )
 THRESHOLD = 10
 
 [node name="Worker" parent="." index="4" instance=ExtResource( 5 )]
