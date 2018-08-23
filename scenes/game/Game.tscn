@@ -114,7 +114,7 @@ anchor_bottom = 1.0
 margin_left = 4.0
 margin_top = 21.0
 margin_right = -623.0
-margin_bottom = -360.0
+margin_bottom = -367.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -122,6 +122,7 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 script = ExtResource( 7 )
+_sections_unfolded = [ "Rect" ]
 MAX_ALLOWED = 6
 
 [node name="List" type="VBoxContainer" parent="Input" index="0"]
@@ -157,7 +158,7 @@ anchor_bottom = 1.0
 margin_left = 143.0
 margin_top = 21.0
 margin_right = -484.0
-margin_bottom = -360.0
+margin_bottom = -367.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0

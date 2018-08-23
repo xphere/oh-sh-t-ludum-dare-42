@@ -27,7 +27,6 @@ func leave(root):
 
 
 func _on_leave_grid(grid):
-	cursor.reset_correctness()
 	get_parent().change_to("RequestPicked", picked)
 
 

@@ -29,6 +29,7 @@ func _on_enter_grid(grid):
 
 
 func _on_select_input(input):
+	clean()
 	get_parent().change_to("PiecePicked", input)
 
 
@@ -41,14 +42,18 @@ func _on_mouse_moved(position):
 
 
 func set_picked(request):
+	picked.unselect() if picked else null
 	picked = request
+	request = request.duplicate()
 	var amount = picked.get_meta("request_amount")
 	var color = picked.get_meta("request_color")
-	request = request.duplicate()
 	request.rect_position = Vector2(-4, -picked.rect_size.y)
 	cursor.set_placeholder(request)
 	emit_signal("request_picked", amount, color)
+	picked.select()
 
 
 func clean():
-	picked = null
+	if picked:
+		picked.unselect()
+		picked = null

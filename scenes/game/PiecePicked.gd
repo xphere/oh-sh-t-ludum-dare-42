@@ -10,6 +10,7 @@ var cursor
 func enter(root, input):
 	root.connect("enter_grid", self, "_on_enter_grid")
 	root.connect("select_input", self, "_on_select_input")
+	root.connect("select_output", self, "_on_select_output")
 	root.connect("mouse_moved", self, "_on_mouse_moved")
 	root.connect("right_click", self, "_on_right_click")
 
@@ -21,6 +22,7 @@ func enter(root, input):
 func leave(root):
 	root.disconnect("enter_grid", self, "_on_enter_grid")
 	root.disconnect("select_input", self, "_on_select_input")
+	root.disconnect("select_output", self, "_on_select_output")
 	root.disconnect("mouse_moved", self, "_on_mouse_moved")
 	root.disconnect("right_click", self, "_on_right_click")
 
@@ -33,6 +35,11 @@ func _on_select_input(input):
 	get_parent().change_to("PiecePicked", input)
 
 
+func _on_select_output(output):
+	clean()
+	get_parent().change_to("RequestPicked", output)
+
+
 func _on_mouse_moved(position):
 	cursor.set_position(position)
 
@@ -43,12 +50,16 @@ func _on_right_click(position):
 
 
 func set_picked(input):
+	picked.unselect() if picked else null
 	picked = input
 	var shape = picked.get_meta("piece_shape")
 	var color = picked.get_meta("piece_color")
 	cursor.set_placeholder($BitFactory.create(shape, color))
 	emit_signal("piece_picked", shape, color)
+	picked.select()
 
 
 func clean():
-	picked = null
+	if picked:
+		picked.unselect()
+		picked = null
