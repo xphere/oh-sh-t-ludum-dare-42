@@ -43,6 +43,8 @@ func remove_adjacents(grid):
 	for cell in adjacents:
 		cell.unset()
 
+	grid.refresh_cells()
+
 
 func put_cells(grid, color):
 	grid.put_cells(placeholder, color)

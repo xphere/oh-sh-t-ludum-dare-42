@@ -75,10 +75,24 @@ func adjacents_at(color, index, checked):
 	)
 
 
+func refresh_cells():
+	for index in cells.keys():
+		var cell = cells[index]
+		var color = cell.color
+		cell.connected_with(
+			cell.filled and index.y > 0 and cells[index - Vector2(0, 1)].color == color,
+			cell.filled and index.x < WIDTH - 1 and cells[index + Vector2(1, 0)].color == color,
+			cell.filled and index.y < HEIGHT - 1 and cells[index + Vector2(0, 1)].color == color,
+			cell.filled and index.x > 0 and cells[index - Vector2(1, 0)].color == color
+		)
+
+
 func put_cells(node, color):
 	for child in node.get_children():
 		cell_at(child.global_position).set(color)
 		total_count -= 1
+
+	refresh_cells()
 
 	if total_count < THRESHOLD:
 		emit_signal("running_out_of_space")

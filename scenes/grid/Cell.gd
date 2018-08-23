@@ -15,3 +15,10 @@ func unset():
 	color = null
 	$Bit.visible = false
 	filled = false
+
+
+func connected_with(top, right, bottom, left):
+	$Floor.region_rect.position = Vector2(
+		(8 if top else 0) + (16 if right else 0),
+		(8 if bottom else 0) + (16 if left else 0)
+	)
