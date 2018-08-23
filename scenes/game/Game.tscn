@@ -241,7 +241,6 @@ bus = "Sound"
 
 [node name="States" type="Node" parent="." index="9"]
 
-editor/display_folded = true
 script = ExtResource( 15 )
 root = ".."
 

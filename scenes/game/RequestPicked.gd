@@ -34,7 +34,12 @@ func _on_select_input(input):
 
 
 func _on_select_output(output):
-	get_parent().change_to("RequestPicked", output)
+	var is_selected = output.selected
+	clean()
+	if is_selected:
+		get_parent().change_to("Idle")
+	else:
+		get_parent().change_to("RequestPicked", output)
 
 
 func _on_mouse_moved(position):

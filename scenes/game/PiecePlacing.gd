@@ -47,7 +47,6 @@ func _on_left_click(position):
 
 	cursor.put_cells(grid, picked.get_meta("piece_color"))
 	picked.delete()
-	cursor.reset()
 
 	emit_signal("piece_placed")
 	get_parent().change_to("Idle")

@@ -32,7 +32,12 @@ func _on_enter_grid(grid):
 
 
 func _on_select_input(input):
-	get_parent().change_to("PiecePicked", input)
+	var is_selected = input.selected
+	clean()
+	if is_selected:
+		get_parent().change_to("Idle")
+	else:
+		get_parent().change_to("PiecePicked", input)
 
 
 func _on_select_output(output):

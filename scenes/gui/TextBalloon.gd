@@ -1,6 +1,7 @@
 extends Container
 
 var content
+var selected = false
 
 
 func set(node):
@@ -16,8 +17,10 @@ func delete():
 
 
 func select():
+	selected = true
 	$Patch.region_rect.position.y = 7
 
 
 func unselect():
+	selected = false
 	$Patch.region_rect.position.y = 0

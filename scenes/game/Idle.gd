@@ -8,6 +8,7 @@ func enter(root, parameters):
 	root.connect("select_output", self, "_on_select_output")
 	root.connect("mouse_moved", self, "_on_mouse_moved")
 	cursor = root.get_node("Cursor")
+	cursor.reset()
 
 
 func leave(root):

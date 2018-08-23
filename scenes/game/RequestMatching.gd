@@ -44,7 +44,6 @@ func _on_left_click(position):
 
 	cursor.remove_adjacents(grid)
 	picked.delete()
-	cursor.reset()
 
 	emit_signal("request_matched")
 	get_parent().change_to("Idle")
