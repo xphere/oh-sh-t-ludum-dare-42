@@ -22,6 +22,8 @@ CELL_WIDTH = 8
 CELL_HEIGHT = 8
 WIDTH = 8
 HEIGHT = 8
+COLISION_MARGIN = Vector2( 3, 3 )
+THRESHOLD = 10
 
 [node name="Collision" type="CollisionShape2D" parent="." index="0"]
 

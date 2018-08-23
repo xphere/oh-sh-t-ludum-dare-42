@@ -31,5 +31,18 @@ func check_grid(grid):
 	return grid.check_cells(placeholder) if placeholder else false
 
 
+func check_requirements(grid, amount, color):
+	var adjacents = grid.adjacents(global_position) if placeholder else []
+
+	return adjacents.size() == amount and (color == 3 or adjacents[0].color == color)
+
+
+func remove_adjacents(grid):
+	var adjacents = grid.adjacents(global_position) if placeholder else []
+
+	for cell in adjacents:
+		cell.unset()
+
+
 func put_cells(grid, color):
 	grid.put_cells(placeholder, color)

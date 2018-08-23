@@ -51,6 +51,30 @@ func check_cells(node):
 	return all_correct
 
 
+func adjacents(_global_position):
+	var index = cell_index_at(_global_position)
+
+	return adjacents_at(cells[index].color, index, {})
+
+
+func adjacents_at(color, index, checked):
+	if checked.has(index):
+		return []
+
+	checked[index] = true
+	var cell = cells[index]
+	if cell.color != color:
+		return []
+
+	return (
+		(adjacents_at(color, index - Vector2(1, 0), checked) if index.x > 0 else []) +
+		(adjacents_at(color, index - Vector2(0, 1), checked) if index.y > 0 else []) +
+		(adjacents_at(color, index + Vector2(1, 0), checked) if index.x < WIDTH - 1 else []) +
+		(adjacents_at(color, index + Vector2(0, 1), checked) if index.y < HEIGHT - 1 else []) +
+		[cell]
+	)
+
+
 func put_cells(node, color):
 	for child in node.get_children():
 		cell_at(child.global_position).set(color)

@@ -6,6 +6,7 @@ signal mouse_moved(position)
 signal left_click(position)
 signal right_click(position)
 signal select_input(input)
+signal select_output(output)
 
 
 var mouse_position
@@ -40,6 +41,10 @@ func _on_Grid_mouse_exited():
 
 func _on_InputTrack_balloon_clicked(input):
 	emit_signal("select_input", input)
+
+
+func _on_OutputTrack_balloon_clicked(output):
+	emit_signal("select_output", output)
 
 
 func _on_Grid_running_out_of_space():
