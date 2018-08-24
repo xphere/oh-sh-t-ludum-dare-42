@@ -11,15 +11,16 @@ const COLORS = [
 func create_random(balloon):
 	var shape = randi() % get_child_count()
 	var prototype = get_child(shape)
-	var clone = prototype.duplicate()
+	var label = prototype.duplicate()
 	var color = randi() % 4
 	var amount = 1 + randi() % 8
-	clone.text = "%d" % amount
-	clone.modulate = COLORS[color]
-	clone.visible = true
 
-	balloon.set(clone)
+	label.text = "%d" % amount
+	label.modulate = COLORS[color]
+	label.visible = true
+
+	balloon.set(label)
 	balloon.set_meta("request_amount", amount)
 	balloon.set_meta("request_color", color)
 
-	return clone
+	return label
