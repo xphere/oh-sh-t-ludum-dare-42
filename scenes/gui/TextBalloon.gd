@@ -5,15 +5,14 @@ var selected = false
 
 
 func set(node):
-	if content:
-		content.queue_free()
-		$Patch.remove_child(content)
+	$AnimationPlayer.play("Enter")
+	$AnimationPlayer.seek(0, true)
 	$Patch.add_child(node)
 	content = node
 
 
 func delete():
-	self.queue_free()
+	$AnimationPlayer.play("Leave")
 
 
 func select():
