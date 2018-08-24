@@ -295,6 +295,10 @@ script = ExtResource( 21 )
 
 [connection signal="piece_wrong_placed" from="States/PiecePlacing" to="." method="_on_piece_wrong_placed"]
 
+[connection signal="request_matched" from="States/RequestMatching" to="." method="_on_piece_placed"]
+
 [connection signal="request_matched" from="States/RequestMatching" to="States/RequestPicked" method="clean"]
+
+[connection signal="request_wrong_matched" from="States/RequestMatching" to="." method="_on_piece_wrong_placed"]
 
 
