@@ -1,0 +1,139 @@
+Post-mortem: "Oh sh*t!"
+=======================
+
+About
+-----
+First of all, hi there and thanks for reading.
+
+Let me introduce myself, I'm Berny a.k.a [xPheRe](https://twitter.com/xphere) and I've been working as a web developer for the last 10 years.
+Now I'm looking to find a place where I've always belonged: videogames.
+And that's where I am now, writing about my unfinished project [Oh sh*t!](https://ldjam.com/events/ludum-dare/42/untitled-ludum-dare-42-running-out-of-space) featured at Ludum Dare 42.
+I think it would be interesting to share my thoughts during the development of the project.
+To me, at least.
+
+(My apologies in advance for my English, it's not my first language)
+
+Intro
+-----
+Rewind to previous friday and picture the following:
+This is me, getting home late, after some beers.
+Now I'm turning my computer on and looking at my twitter timeline.
+Then a scream comes out loud from my throat...
+"OMG, LD#42 started already? OH, SH*T!"
+
+Act I: Brainstorm
+-----------------
+I was only one hour late, but here in Spain it was night time already.
+I decided to brainstorm some ideas before going to bed and let the pillow decide.
+
+I wrote some ideas in little paper strips:
+- Space: Universe. Spatial concept. Keyboard key.
+- Running out: Reduce space with time. Fill space with elements. Run, literally, like Forest Gump.
+- Gameplay: Puzzle. Switches. Transformation.
+- Type: 2D platform. Top-down sokoban style. First person.
+- Environment: Computer memory. Schedule. Room. Wardrobe.
+
+The next morning, after some good sleep, I carved some rules:
+- It should be simple.
+- I liked the computer theme.
+- A tetris-alike would be nice.
+- The game's name will be "OH, SH*T!". Everybody knows you need to start with the name.
+
+Also I'd follow COMPO's rules in case I had something finished in 48 hours.
+Dude, I was so wrong about that...
+
+Act II: I walk alone
+--------------------
+Can you believe it? You've been promoted to memory manager! Awesome!
+A whole memory cell to manage and fill with bits from the bus storage... Wow.
+I hope to live up to the expectations...
+
+That's the beginning of the story, now I want to convert this into a game. Where do I start?
+
+I created some simple pixel assets in [Gimp](https://www.gimp.org).
+I drew the worker, the bits, the pieces, the factory floor...
+Added some animations to the main character: idle, walking, talking, picking an object...
+I made some plans with those assets, drawing mentally what I wanted the game to look like.
+
+The worker must go to a conveyor belt, the input queue, to pick a package, then go to the main grid and place it.
+Bits placed in the grid can't be walked over, so each piece makes the next harder to put.
+In order to empty some cells there'll be an output queue with piece requests which you can fulfill.
+Also some packages are transformations that you can apply to a cell, like "clear all connected cells to this one that share color".
+
+I opened [Godot](https://godotengine.org) and start placing the assets here and there.
+Everything looked gorgeous and I had a walking player in a gray factory in less than 30 minutes.
+Then I started to code grid's logic and everything crumbled.
+
+Cut-scene: The path to decay
+----------------------------
+It was almost a day in the jam and it came clear to my mind:
+Everything I've got until then were the secondary actors.
+The main character isn't the worker or the factory... it's the grid.
+And since I had a hard time putting the grid to work with the rest, I decided to remove everything else.
+
+I even decided to pause development until the next day and let the pillow decide again.
+My pillow's a good adviser.
+
+Break
+-----
+But the pillow didn't help that much.
+
+Sunday came full of social events and I wasn't able to touch a single line of code until late.
+But I had the time to think about the direction of the project.
+And that was the problem: It had no direction at all.
+
+I've been working like a headless chicken, without planning.
+And also ignoring the first rule: It should be simple.
+My next step should be to open a [Trello](https://trello.com) and start organizing myself.
+I won't give up on the project, I'd be working until the last minute to ship it as JAM at least.
+
+Back at home again, turned the computer just to look with dismay how my internet connection wasn't working at all.
+
+Act III: Focus shift
+--------------------
+The next morning my ISP fixed the connection problem, time I took to start a greenfield project just with the grid.
+I focused on the main concerns, placing pieces, avoiding collision, rotating...
+Making the grid work on its own then stacking the other pieces on top.
+When I got it working with the mouse I decided to left it as this.
+No need for the player to move the worker here and there. Simpler.
+
+The rest of the assets started to build upon the working grid.
+But most of those wasn't used, worker animations, grid connections, conveyor belts... Time spent for nothing.
+
+As it became clear that I wasn't going to publish a full game, I began to polish some things.
+Added some sound effects generated with the awesome ["sfxr"](http://drpetter.se/project_sfxr.html).
+Brought back the main character and the game's title.
+Created a simple site at [itch.io](https://xphere.itch.io/oh-shit) to expose the little thing.
+Everything was in place, but not as I would like to be.
+
+But I finally managed to make something for a Ludum Dare.
+And that, that was the BIG prize.
+
+The Good
+--------
+- Engine choice: [Godot](https://godotengine.org) feels like a glove to my ideals. It's open source, in front of a great community, behind a close development team.
+- Breaks: Taking breaks to sleep and eat well is key. When stuck, go for a walk, do something else. The inspiration will come.
+- LDJam community: Received good advices in the comments, also support and encouragement. This is awesome for a newcomer with an unfinished project on the table.
+
+The Bad
+-------
+- The house from the rooftop: When working solo it's vital to have your priorities sorted. Know what's the key point of your game, develop this. Then add the rest. I did it the other way around.
+- Organization: Managing time is essential in a 72h race, use any management tool at your fingertips, but choose one and stick to it. From the beginning.
+- Forcing the theme: It's hard to find novel ideas matching the theme. Just get some old ideas and mix them. I tried too hard to build an original idea and this munched too much time.
+- Too many ideas: Once you get a good idea, stop overthinking. Mentally adding too much content creates a burden on expectations. I wanted to do so many things in 72h...
+- Grow by little: Take baby steps towards your next goal, those should be reachable from the previous one, but enough to make you feel advancing. Bite the big picture in easy installments.
+
+The Ugly
+--------
+- Music: Had I know about [Abundant Music](https://pernyblom.github.io/abundant-music) there'll be some great midi tune in the background. Great tool.
+- Mouse is for PC: try to find a way you can play your game in most platforms. Mouse location is not that portable (think console controllers or cellphones)
+- Noise and interruptions: Using a pomodoro technique would've ease the focus on development and breaks, even with no one's around to tell.
+- Compare and despair: I checked #LD42 hashtag at twitter too many times, watching in awe other people's games. But that's fine, this is YOUR game. Be proud of it.
+
+Ending
+------
+At first this project seemed to me like a big failure. Then I understand it can be used as an experience towards better contributions.
+Comments on this unfinished game made me think again if I should work further to finish the game or not.
+It would take some time, but it will be worth it.
+
+Thanks for reading and enjoy Ludum Dare!
