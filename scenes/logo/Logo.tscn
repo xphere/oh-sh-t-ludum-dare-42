@@ -1,0 +1,131 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://scenes/logo/Logo.gd" type="Script" id=1]
+[ext_resource path="res://scenes/menu/Menu.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/logo/Light.material" type="Material" id=3]
+[ext_resource path="res://scenes/logo/border.png" type="Texture" id=4]
+[ext_resource path="res://scenes/logo/light.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/logo/text.png" type="Texture" id=6]
+
+[sub_resource type="Animation" id=1]
+
+length = 2.5
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/light_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 1.5, 2.5 ),
+"transitions": PoolRealArray( 5.47655, 5.47655, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -25, 0 ), Vector2( -25, 0 ), Vector2( 32, 0 ), Vector2( 32, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("AudioPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.4, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2, 2.5 ),
+"transitions": PoolRealArray( 1, 2.39552, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/light_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( -25, 0 ) ]
+}
+
+[node name="Logo" type="Node2D"]
+
+script = ExtResource( 1 )
+next_scene = ExtResource( 2 )
+
+[node name="Border" type="Sprite" parent="." index="0"]
+
+material = ExtResource( 3 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Border" index="0"]
+
+root_node = NodePath("..")
+autoplay = "Light"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Light = SubResource( 1 )
+anims/Reset = SubResource( 2 )
+blend_times = [  ]
+
+[node name="AudioPlayer" type="AudioStreamPlayer" parent="Border" index="1"]
+
+stream = ExtResource( 5 )
+volume_db = -12.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Master"
+
+[node name="Text" type="Sprite" parent="." index="1"]
+
+texture = ExtResource( 6 )
+
+[node name="Camera" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.2, 0.2 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+
+[connection signal="animation_finished" from="Border/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+
+
