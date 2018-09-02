@@ -1,0 +1,168 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://scenes/menu/background.png" type="Texture" id=1]
+[ext_resource path="res://scenes/gui/text-balloon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/menu/MenuOption.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/worker/worker.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=5]
+
+length = 10.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.9, 2, 4, 4.2, 7.4, 7.5, 9.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 0, 1, 0, 1, 0, 1 ]
+}
+
+[node name="MenuScreen" type="Node2D" index="0"]
+
+[node name="Background" type="Sprite" parent="." index="0"]
+
+texture = ExtResource( 1 )
+_sections_unfolded = [ "Transform" ]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="MenuContainer" type="Container" parent="." index="1"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -39.0
+margin_top = -34.0
+margin_right = -25.0
+margin_bottom = -29.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="Menu" type="NinePatchRect" parent="MenuContainer" index="0"]
+
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 2
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 10, 7 )
+patch_margin_left = 6
+patch_margin_top = 2
+patch_margin_right = 2
+patch_margin_bottom = 4
+_sections_unfolded = [ "Patch Margin" ]
+
+[node name="Menu" type="VBoxContainer" parent="MenuContainer/Menu" index="0"]
+
+editor/display_folded = true
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 7.0
+margin_top = 7.0
+margin_right = -7.0
+margin_bottom = -12.0
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 1
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+alignment = 0
+_sections_unfolded = [ "Margin" ]
+
+[node name="Play" parent="MenuContainer/Menu/Menu" index="0" instance=ExtResource( 3 )]
+
+next_scene = "res://scenes/game/Game.tscn"
+
+[node name="About" parent="MenuContainer/Menu/Menu" index="1" instance=ExtResource( 3 )]
+
+editor/display_folded = true
+margin_top = 18.0
+margin_bottom = 32.0
+_sections_unfolded = [ "Mouse", "Rect" ]
+next_scene = "res://scenes/logo/Logo.tscn"
+
+[node name="Options" parent="MenuContainer/Menu/Menu/About" index="0"]
+
+region_rect = Rect2( 0, 18, 65, 13 )
+
+[node name="Credits" parent="MenuContainer/Menu/Menu" index="2" instance=ExtResource( 3 )]
+
+margin_top = 36.0
+margin_bottom = 50.0
+next_scene = "res://scenes/logo/Logo.tscn"
+
+[node name="Options" parent="MenuContainer/Menu/Menu/Credits" index="0"]
+
+region_rect = Rect2( 0, 36, 65, 13 )
+
+[node name="Camera" type="Camera2D" parent="." index="2"]
+
+anchor_mode = 1
+rotating = false
+current = true
+zoom = Vector2( 0.25, 0.25 )
+limit_left = -10000000
+limit_top = -10000000
+limit_right = 10000000
+limit_bottom = 10000000
+limit_smoothed = false
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = false
+smoothing_speed = 5.0
+offset_v = 0.0
+offset_h = 0.0
+drag_margin_left = 0.2
+drag_margin_top = 0.2
+drag_margin_right = 0.2
+drag_margin_bottom = 0.2
+editor_draw_screen = true
+editor_draw_limits = false
+editor_draw_drag_margin = false
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Worker" type="Sprite" parent="." index="3"]
+
+editor/display_folded = true
+position = Vector2( -72.8412, 46.9609 )
+texture = ExtResource( 4 )
+vframes = 2
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Worker" index="0"]
+
+root_node = NodePath("..")
+autoplay = "Idle"
+playback_process_mode = 1
+playback_default_blend_time = 0.0
+playback_speed = 1.0
+anims/Idle = SubResource( 5 )
+blend_times = [  ]
+
+
+[editable path="MenuContainer/Menu/Menu/About"]
+[editable path="MenuContainer/Menu/Menu/Credits"]
