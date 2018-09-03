@@ -53,9 +53,8 @@ patch_margin_right = 2
 patch_margin_bottom = 4
 _sections_unfolded = [ "Patch Margin" ]
 
-[node name="Menu" type="VBoxContainer" parent="MenuContainer/Menu" index="0"]
+[node name="Options" type="VBoxContainer" parent="MenuContainer/Menu" index="0"]
 
-editor/display_folded = true
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 1.0
@@ -73,29 +72,28 @@ size_flags_vertical = 1
 alignment = 0
 _sections_unfolded = [ "Margin" ]
 
-[node name="Play" parent="MenuContainer/Menu/Menu" index="0" instance=ExtResource( 3 )]
+[node name="Play" parent="MenuContainer/Menu/Options" index="0" instance=ExtResource( 3 )]
 
 next_scene = "res://scenes/game/Game.tscn"
 
-[node name="About" parent="MenuContainer/Menu/Menu" index="1" instance=ExtResource( 3 )]
+[node name="About" parent="MenuContainer/Menu/Options" index="1" instance=ExtResource( 3 )]
 
-editor/display_folded = true
 margin_top = 18.0
 margin_bottom = 32.0
 _sections_unfolded = [ "Mouse", "Rect" ]
 next_scene = "res://scenes/logo/Logo.tscn"
 
-[node name="Options" parent="MenuContainer/Menu/Menu/About" index="0"]
+[node name="Options" parent="MenuContainer/Menu/Options/About" index="0"]
 
 region_rect = Rect2( 0, 18, 65, 13 )
 
-[node name="Credits" parent="MenuContainer/Menu/Menu" index="2" instance=ExtResource( 3 )]
+[node name="Credits" parent="MenuContainer/Menu/Options" index="2" instance=ExtResource( 3 )]
 
 margin_top = 36.0
 margin_bottom = 50.0
 next_scene = "res://scenes/logo/Logo.tscn"
 
-[node name="Options" parent="MenuContainer/Menu/Menu/Credits" index="0"]
+[node name="Options" parent="MenuContainer/Menu/Options/Credits" index="0"]
 
 region_rect = Rect2( 0, 36, 65, 13 )
 
@@ -132,5 +130,5 @@ __meta__ = {
 position = Vector2( -73, 51 )
 
 
-[editable path="MenuContainer/Menu/Menu/About"]
-[editable path="MenuContainer/Menu/Menu/Credits"]
+[editable path="MenuContainer/Menu/Options/About"]
+[editable path="MenuContainer/Menu/Options/Credits"]

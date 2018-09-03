@@ -212,7 +212,7 @@ tracks/0/keys = {
 "values": [ 0, 8, 9, 8, 0, 1, 0, 0 ]
 }
 
-[node name="Worker" type="Node2D"]
+[node name="Worker" type="Node2D" index="0"]
 
 _sections_unfolded = [ "Transform" ]
 
@@ -220,7 +220,7 @@ _sections_unfolded = [ "Transform" ]
 
 _sections_unfolded = [ "Transform" ]
 
-[node name="Worker" type="Sprite" parent="Pivot" index="0"]
+[node name="Sprite" type="Sprite" parent="Pivot" index="0"]
 
 texture = ExtResource( 1 )
 offset = Vector2( 1, -4 )
@@ -228,9 +228,9 @@ vframes = 3
 hframes = 4
 _sections_unfolded = [ "Offset" ]
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Pivot/Worker" index="0"]
+[node name="IdleAnimations" type="AnimationPlayer" parent="Pivot" index="1"]
 
-root_node = NodePath("..")
+root_node = NodePath("../Sprite")
 autoplay = "Reset"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
