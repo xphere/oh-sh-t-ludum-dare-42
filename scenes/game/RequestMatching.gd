@@ -17,6 +17,7 @@ func enter(root, input):
 	grid = root.get_node("Grid")
 	cursor = root.get_node("Cursor")
 	picked = input
+	check_requirements()
 
 
 func leave(root):
@@ -32,6 +33,10 @@ func _on_leave_grid(grid):
 
 func _on_mouse_moved(position):
 	cursor.position = grid.cell_at(position).global_position
+	check_requirements()
+
+
+func check_requirements():
 	var amount = picked.get_meta("request_amount")
 	var color = picked.get_meta("request_color")
 	correct = cursor.check_requirements(grid, amount, color)

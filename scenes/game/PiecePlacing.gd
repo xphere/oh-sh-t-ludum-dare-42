@@ -18,6 +18,7 @@ func enter(root, input):
 
 	grid = root.get_node("Grid")
 	cursor = root.get_node("Cursor")
+	correct = cursor.check_grid(grid)
 	picked = input
 
 
