@@ -2,16 +2,14 @@
 
 [ext_resource path="res://scenes/game/shelf.png" type="Texture" id=1]
 
-[node name="Shelf" type="Container"]
+[node name="Shelf" type="Container" index="0"]
 
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 39.0
-margin_top = 8.0
-margin_right = 120.0
-margin_bottom = 22.0
+margin_right = 81.0
+margin_bottom = 16.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -25,9 +23,10 @@ __meta__ = {
 [node name="Front" type="NinePatchRect" parent="." index="0"]
 
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = -7.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 2
@@ -35,12 +34,12 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 1 )
-region_rect = Rect2( 5, 0, 5, 14 )
+region_rect = Rect2( 5, 7, 5, 7 )
 patch_margin_left = 2
-patch_margin_top = 6
+patch_margin_top = 2
 patch_margin_right = 2
-patch_margin_bottom = 3
-_sections_unfolded = [ "Patch Margin" ]
+patch_margin_bottom = 2
+_sections_unfolded = [ "Margin" ]
 
 [node name="Elements" type="Container" parent="." index="1"]
 
