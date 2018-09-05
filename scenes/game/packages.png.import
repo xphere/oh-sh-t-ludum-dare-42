@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall.png-4923d858bd38d228ae8f8d32cb418742.stex"
+path="res://.import/packages.png-e90dbb2047715fe9d0a8904598507a0b.stex"
 
 [deps]
 
-source_file="res://scenes/game/wall.png"
-dest_files=[ "res://.import/wall.png-4923d858bd38d228ae8f8d32cb418742.stex" ]
+source_file="res://scenes/game/packages.png"
+dest_files=[ "res://.import/packages.png-e90dbb2047715fe9d0a8904598507a0b.stex" ]
 
 [params]
 

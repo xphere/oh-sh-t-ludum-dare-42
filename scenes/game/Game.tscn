@@ -1,51 +1,14 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://scenes/game/Game.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game/floor.png" type="Texture" id=2]
-[ext_resource path="res://scenes/game/wall.png" type="Texture" id=3]
-[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=6]
-[ext_resource path="res://scenes/game/InputTrack.gd" type="Script" id=7]
-[ext_resource path="res://scenes/game/PieceFactory.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/game/RequestFactory.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/game/Cursor.gd" type="Script" id=10]
-[ext_resource path="res://scenes/game/piece-arrived.wav" type="AudioStream" id=11]
-[ext_resource path="res://scenes/game/piece-placed.wav" type="AudioStream" id=12]
-[ext_resource path="res://scenes/game/piece-wrong.wav" type="AudioStream" id=13]
-[ext_resource path="res://scenes/game/piece-rotated.wav" type="AudioStream" id=14]
-[ext_resource path="res://scenes/game/FiniteStateMachine.gd" type="Script" id=15]
-[ext_resource path="res://scenes/game/Idle.gd" type="Script" id=16]
-[ext_resource path="res://scenes/game/PiecePicked.gd" type="Script" id=17]
-[ext_resource path="res://scenes/game/BitFactory.tscn" type="PackedScene" id=18]
-[ext_resource path="res://scenes/game/PiecePlacing.gd" type="Script" id=19]
-[ext_resource path="res://scenes/game/RequestPicked.gd" type="Script" id=20]
-[ext_resource path="res://scenes/game/RequestMatching.gd" type="Script" id=21]
+[ext_resource path="res://scenes/game/floor.png" type="Texture" id=1]
+[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=4]
+[ext_resource path="res://scenes/game/ConveyorBelt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/game/Cursor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/Shelf.tscn" type="PackedScene" id=7]
 
-[sub_resource type="AudioStreamRandomPitch" id=1]
-
-audio_stream = ExtResource( 11 )
-random_pitch = 1.1
-_sections_unfolded = [ "Resource" ]
-
-[sub_resource type="AudioStreamRandomPitch" id=2]
-
-audio_stream = ExtResource( 12 )
-random_pitch = 1.1
-
-[sub_resource type="AudioStreamRandomPitch" id=3]
-
-audio_stream = ExtResource( 13 )
-random_pitch = 1.1
-
-[sub_resource type="AudioStreamRandomPitch" id=4]
-
-audio_stream = ExtResource( 14 )
-random_pitch = 1.1
-
-[node name="Game" type="Node"]
-
-script = ExtResource( 1 )
+[node name="Game" type="Node" index="0"]
 
 [node name="Camera" type="Camera2D" parent="." index="0"]
 
@@ -76,228 +39,60 @@ _sections_unfolded = [ "Editor", "Transform" ]
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
-texture = ExtResource( 2 )
+texture = ExtResource( 1 )
 centered = false
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="Wall" type="Sprite" parent="." index="2"]
-
-texture = ExtResource( 3 )
-centered = false
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
-
-[node name="Grid" parent="." index="3" instance=ExtResource( 4 )]
+[node name="Grid" parent="." index="2" instance=ExtResource( 2 )]
 
 position = Vector2( 51, 46 )
 _sections_unfolded = [ "Collision", "Pickable", "Transform" ]
 CELL_WIDTH = 7
 CELL_HEIGHT = 7
 
-[node name="Worker" parent="." index="4" instance=ExtResource( 5 )]
+[node name="Worker" parent="." index="3" instance=ExtResource( 3 )]
 
 editor/display_folded = true
-position = Vector2( 31, 56 )
+position = Vector2( 28, 39 )
 
 [node name="Balloon" type="Sprite" parent="Worker" index="1"]
 
 visible = false
 position = Vector2( 7, -16 )
-texture = ExtResource( 6 )
+texture = ExtResource( 4 )
 
-[node name="Input" type="Container" parent="." index="5"]
+[node name="Input" parent="." index="4" instance=ExtResource( 5 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 4.0
-margin_top = 21.0
-margin_right = -623.0
-margin_bottom = -367.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-script = ExtResource( 7 )
-_sections_unfolded = [ "Rect" ]
-MAX_ALLOWED = 6
+margin_top = 89.0
+margin_right = 37.0
+margin_bottom = 96.0
 
-[node name="List" type="VBoxContainer" parent="Input" index="0"]
+[node name="Cursor" parent="." index="5" instance=ExtResource( 6 )]
 
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 0
+[node name="Output" parent="." index="6" instance=ExtResource( 5 )]
 
-[node name="Timer" type="Timer" parent="Input" index="1"]
+margin_left = 160.0
+margin_top = 69.0
+margin_right = 197.0
+margin_bottom = 76.0
+rect_scale = Vector2( -1, 1 )
+_sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Patch Margin", "Rect", "Visibility" ]
 
-process_mode = 1
-wait_time = 2.0
-one_shot = false
-autostart = true
+[node name="Requests" parent="." index="7" instance=ExtResource( 5 )]
 
-[node name="Factory" parent="Input" index="2" instance=ExtResource( 8 )]
+margin_left = 160.0
+margin_top = 89.0
+margin_right = 197.0
+margin_bottom = 96.0
+rect_scale = Vector2( -1, 1 )
+_sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Patch Margin", "Rect", "Size Flags", "Visibility", "custom_constants" ]
 
-[node name="Output" type="Container" parent="." index="6"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 143.0
-margin_top = 21.0
-margin_right = -484.0
-margin_bottom = -367.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-script = ExtResource( 7 )
-_sections_unfolded = [ "Grow Direction", "Rect" ]
-MAX_ALLOWED = 6
-
-[node name="List" type="VBoxContainer" parent="Output" index="0"]
-
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 1
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-alignment = 2
-_sections_unfolded = [ "Grow Direction", "Rect" ]
-
-[node name="Timer" type="Timer" parent="Output" index="1"]
-
-process_mode = 1
-wait_time = 2.0
-one_shot = false
-autostart = true
-
-[node name="Factory" parent="Output" index="2" instance=ExtResource( 9 )]
-
-[node name="Cursor" type="Position2D" parent="." index="7"]
-
-modulate = Color( 1, 1, 1, 0.737255 )
-script = ExtResource( 10 )
-_sections_unfolded = [ "Visibility" ]
-
-[node name="Sound" type="Node" parent="." index="8"]
-
-editor/display_folded = true
-
-[node name="PieceArrived" type="AudioStreamPlayer" parent="Sound" index="0"]
-
-stream = SubResource( 1 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Sound"
-
-[node name="PiecePlaced" type="AudioStreamPlayer" parent="Sound" index="1"]
-
-stream = SubResource( 2 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Sound"
-
-[node name="PieceWrong" type="AudioStreamPlayer" parent="Sound" index="2"]
-
-stream = SubResource( 3 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Sound"
-
-[node name="PieceRotated" type="AudioStreamPlayer" parent="Sound" index="3"]
-
-stream = SubResource( 4 )
-volume_db = 0.0
-pitch_scale = 1.0
-autoplay = false
-mix_target = 0
-bus = "Sound"
-
-[node name="States" type="Node" parent="." index="9"]
-
-editor/display_folded = true
-script = ExtResource( 15 )
-root = ".."
-
-[node name="Idle" type="Node" parent="States" index="0"]
-
-script = ExtResource( 16 )
-
-[node name="PiecePicked" type="Node" parent="States" index="1"]
-
-editor/display_folded = true
-script = ExtResource( 17 )
-
-[node name="BitFactory" parent="States/PiecePicked" index="0" instance=ExtResource( 18 )]
-
-visible = false
-
-[node name="PiecePlacing" type="Node" parent="States" index="2"]
-
-script = ExtResource( 19 )
-
-[node name="RequestPicked" type="Node" parent="States" index="3"]
-
-script = ExtResource( 20 )
-
-[node name="RequestMatching" type="Node" parent="States" index="4"]
-
-script = ExtResource( 21 )
+[node name="Shelf" parent="." index="8" instance=ExtResource( 7 )]
 
 [connection signal="mouse_entered" from="Grid" to="." method="_on_Grid_mouse_entered"]
 
 [connection signal="mouse_exited" from="Grid" to="." method="_on_Grid_mouse_exited"]
 
 [connection signal="running_out_of_space" from="Grid" to="." method="_on_Grid_running_out_of_space"]
-
-[connection signal="balloon_added" from="Input" to="." method="_on_balloon_added"]
-
-[connection signal="balloon_clicked" from="Input" to="." method="_on_InputTrack_balloon_clicked"]
-
-[connection signal="timeout" from="Input/Timer" to="Input" method="tick"]
-
-[connection signal="balloon_clicked" from="Output" to="." method="_on_OutputTrack_balloon_clicked"]
-
-[connection signal="timeout" from="Output/Timer" to="Output" method="tick"]
-
-[connection signal="piece_rotated" from="States/PiecePicked" to="." method="_on_piece_rotated"]
-
-[connection signal="piece_placed" from="States/PiecePlacing" to="." method="_on_piece_placed"]
-
-[connection signal="piece_placed" from="States/PiecePlacing" to="States/PiecePicked" method="clean"]
-
-[connection signal="piece_rotated" from="States/PiecePlacing" to="." method="_on_piece_rotated"]
-
-[connection signal="piece_wrong_placed" from="States/PiecePlacing" to="." method="_on_piece_wrong_placed"]
-
-[connection signal="request_matched" from="States/RequestMatching" to="." method="_on_piece_placed"]
-
-[connection signal="request_matched" from="States/RequestMatching" to="States/RequestPicked" method="clean"]
-
-[connection signal="request_wrong_matched" from="States/RequestMatching" to="." method="_on_piece_wrong_placed"]
 
 
