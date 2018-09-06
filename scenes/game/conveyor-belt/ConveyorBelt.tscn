@@ -1,7 +1,8 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/game/ConveyorBelt.gd" type="Script" id=1]
-[ext_resource path="res://scenes/game/conveyor-belt.png" type="Texture" id=2]
+[ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game/conveyor-belt/conveyor-belt.png" type="Texture" id=2]
+
 
 [sub_resource type="Animation" id=1]
 

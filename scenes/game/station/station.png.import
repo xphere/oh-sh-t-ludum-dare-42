@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shelf.png-75db1b37037a393935796d2acbbd069c.stex"
+path="res://.import/station.png-31778571acb9bfe7f1e02d77d4206950.stex"
 
 [deps]
 
-source_file="res://scenes/game/shelf.png"
-dest_files=[ "res://.import/shelf.png-75db1b37037a393935796d2acbbd069c.stex" ]
+source_file="res://scenes/game/station/station.png"
+dest_files=[ "res://.import/station.png-31778571acb9bfe7f1e02d77d4206950.stex" ]
 
 [params]
 

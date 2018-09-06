@@ -2,12 +2,12 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/conveyor-belt.png-cede498a77e81d75fe84b75b418d643f.stex"
+path="res://.import/conveyor-belt.png-3e6cd57e692513ccbd51d618de6a776b.stex"
 
 [deps]
 
-source_file="res://scenes/game/conveyor-belt.png"
-dest_files=[ "res://.import/conveyor-belt.png-cede498a77e81d75fe84b75b418d643f.stex" ]
+source_file="res://scenes/game/conveyor-belt/conveyor-belt.png"
+dest_files=[ "res://.import/conveyor-belt.png-3e6cd57e692513ccbd51d618de6a776b.stex" ]
 
 [params]
 
