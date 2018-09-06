@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=2]
@@ -8,6 +8,28 @@
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=8]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Timer
+
+export(NodePath) var conveyor_path = \"..\" setget set_conveyor_path
+
+
+func set_conveyor_path(path):
+	if path != null:
+		conveyor_path = path
+
+
+func _on_timeout():
+	var conveyor = get_node(conveyor_path)
+
+	if conveyor.at_full_capacity():
+		return
+
+	var package = preload(\"res://scenes/game/package/Package.tscn\").instance()
+	conveyor.add_package(package)
+"
 
 [node name="Game" type="YSort"]
 
@@ -61,7 +83,6 @@ texture = ExtResource( 4 )
 
 [node name="Cursor" parent="." index="4" instance=ExtResource( 5 )]
 
-input_path = NodePath("../Input")
 
 [node name="Grid" parent="." index="5" instance=ExtResource( 6 )]
 
@@ -75,6 +96,15 @@ margin_bottom = 104.0
 margin_top = 89.0
 margin_right = 37.0
 margin_bottom = 96.0
+
+[node name="Timer" type="Timer" parent="Input" index="3"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = false
+autostart = true
+script = SubResource( 1 )
+conveyor_path = ".."
 
 [node name="Output" parent="." index="7" instance=ExtResource( 7 )]
 
@@ -99,5 +129,7 @@ margin_left = 39.0
 margin_top = 8.0
 margin_right = 120.0
 margin_bottom = 22.0
+
+[connection signal="timeout" from="Input/Timer" to="Input/Timer" method="_on_timeout"]
 
 
