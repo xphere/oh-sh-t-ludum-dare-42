@@ -38,13 +38,11 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = false
-_sections_unfolded = [ "Editor", "Transform" ]
 
 [node name="Floor" type="Sprite" parent="." index="1"]
 
 texture = ExtResource( 1 )
 centered = false
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="Worker" parent="." index="2" instance=ExtResource( 2 )]
 
@@ -60,9 +58,10 @@ texture = ExtResource( 3 )
 
 position = Vector2( 28, 43 )
 texture = ExtResource( 4 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Cursor" parent="." index="4" instance=ExtResource( 5 )]
+
+input_path = NodePath("../Input")
 
 [node name="Grid" parent="." index="5" instance=ExtResource( 6 )]
 
@@ -84,7 +83,7 @@ margin_top = 69.0
 margin_right = 197.0
 margin_bottom = 76.0
 rect_scale = Vector2( -1, 1 )
-_sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Patch Margin", "Rect", "Visibility" ]
+movement = 1
 
 [node name="Requests" parent="." index="8" instance=ExtResource( 7 )]
 
@@ -93,7 +92,6 @@ margin_top = 89.0
 margin_right = 197.0
 margin_bottom = 96.0
 rect_scale = Vector2( -1, 1 )
-_sections_unfolded = [ "Anchor", "Axis Stretch", "Grow Direction", "Margin", "Patch Margin", "Rect", "Size Flags", "Visibility", "custom_constants" ]
 
 [node name="Shelf" parent="." index="9" instance=ExtResource( 8 )]
 

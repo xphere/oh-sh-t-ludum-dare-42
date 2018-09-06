@@ -23,3 +23,7 @@ Utils="*res://scripts/Utils.gd"
 window/size/width=640
 window/size/height=480
 window/size/resizable=false
+
+[physics]
+
+2d/default_gravity_vector=Vector2( 0, 0 )
