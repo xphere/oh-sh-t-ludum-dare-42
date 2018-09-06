@@ -3,11 +3,11 @@
 [ext_resource path="res://scenes/game/RequestFactory.gd" type="Script" id=1]
 [ext_resource path="res://fonts/kenney-future-square-8px.tres" type="DynamicFont" id=2]
 
-[node name="RequestFactory" type="Node" index="0"]
+[node name="RequestFactory" type="Node"]
 
 script = ExtResource( 1 )
 
-[node name="Text" type="Label" parent="." index="0"]
+[node name="Text" type="Label" parent="."]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -24,6 +24,5 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
-_sections_unfolded = [ "custom_fonts" ]
 
 

@@ -27,7 +27,6 @@ render_priority = 0
 shader = SubResource( 1 )
 shader_param/color = Color( 1, 0, 0, 1 )
 shader_param/threshold = 0.8
-_sections_unfolded = [ "shader_param" ]
 
 [node name="Cell" type="NinePatchRect"]
 
@@ -46,6 +45,5 @@ size_flags_horizontal = 1
 size_flags_vertical = 1
 texture = ExtResource( 1 )
 region_rect = Rect2( 8, 1, 6, 6 )
-_sections_unfolded = [ "Material" ]
 
 

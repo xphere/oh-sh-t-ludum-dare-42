@@ -4,7 +4,7 @@
 [ext_resource path="res://scenes/gui/portraits.png" type="Texture" id=2]
 [ext_resource path="res://fonts/kenney-future-square-8px.tres" type="DynamicFont" id=3]
 
-[node name="Dialog" type="NinePatchRect" index="0"]
+[node name="Dialog" type="NinePatchRect"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -27,9 +27,8 @@ patch_margin_left = 6
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 4
-_sections_unfolded = [ "Rect", "Size Flags" ]
 
-[node name="Box" type="HBoxContainer" parent="." index="0"]
+[node name="Box" type="HBoxContainer" parent="."]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -47,9 +46,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 alignment = 0
-_sections_unfolded = [ "Margin", "custom_constants" ]
 
-[node name="Portrait" type="Container" parent="Box" index="0"]
+[node name="Portrait" type="Container" parent="Box"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -64,9 +62,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Rect" ]
 
-[node name="Face" type="Sprite" parent="Box/Portrait" index="0"]
+[node name="Face" type="Sprite" parent="Box/Portrait"]
 
 texture = ExtResource( 2 )
 centered = false
@@ -75,7 +72,6 @@ vframes = 4
 hframes = 4
 frame = 5
 region_rect = Rect2( 0, 0, 10, 10 )
-_sections_unfolded = [ "Animation", "Offset" ]
 
 [node name="Text" type="Label" parent="Box" index="1"]
 

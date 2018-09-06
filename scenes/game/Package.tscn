@@ -27,23 +27,19 @@ linear_velocity = Vector2( 0, 0 )
 linear_damp = -1.0
 angular_velocity = 0.0
 angular_damp = 0.0
-_sections_unfolded = [ "Angular", "Applied Forces", "Collision", "Linear", "Pickable", "Transform" ]
 
 [node name="Pivot" type="Position2D" parent="."]
 
 position = Vector2( 0, -2 )
-_sections_unfolded = [ "Transform" ]
 
 [node name="Sprite" type="Sprite" parent="Pivot"]
 
 texture = ExtResource( 1 )
 hframes = 2
-_sections_unfolded = [ "Animation", "Offset" ]
 
 [node name="Collision" type="CollisionShape2D" parent="." index="1"]
 
 position = Vector2( 0, -2 )
 shape = SubResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
 

@@ -5,12 +5,11 @@
 [ext_resource path="res://scenes/menu/MenuOption.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=4]
 
-[node name="MenuScreen" type="Node2D" index="0"]
+[node name="MenuScreen" type="Node2D"]
 
-[node name="Background" type="Sprite" parent="." index="0"]
+[node name="Background" type="Sprite" parent="."]
 
 texture = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
 __meta__ = {
 "_edit_lock_": true
 }
@@ -31,9 +30,8 @@ mouse_filter = 0
 mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="Menu" type="NinePatchRect" parent="MenuContainer" index="0"]
+[node name="Menu" type="NinePatchRect" parent="MenuContainer"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -51,9 +49,8 @@ patch_margin_left = 6
 patch_margin_top = 2
 patch_margin_right = 2
 patch_margin_bottom = 4
-_sections_unfolded = [ "Patch Margin" ]
 
-[node name="Options" type="VBoxContainer" parent="MenuContainer/Menu" index="0"]
+[node name="Options" type="VBoxContainer" parent="MenuContainer/Menu"]
 
 anchor_left = 0.0
 anchor_top = 0.0
@@ -70,9 +67,8 @@ mouse_default_cursor_shape = 0
 size_flags_horizontal = 1
 size_flags_vertical = 1
 alignment = 0
-_sections_unfolded = [ "Margin" ]
 
-[node name="Play" parent="MenuContainer/Menu/Options" index="0" instance=ExtResource( 3 )]
+[node name="Play" parent="MenuContainer/Menu/Options" instance=ExtResource( 3 )]
 
 next_scene = "res://scenes/game/Game.tscn"
 
@@ -80,10 +76,9 @@ next_scene = "res://scenes/game/Game.tscn"
 
 margin_top = 18.0
 margin_bottom = 32.0
-_sections_unfolded = [ "Mouse", "Rect" ]
 next_scene = "res://scenes/logo/Logo.tscn"
 
-[node name="Options" parent="MenuContainer/Menu/Options/About" index="0"]
+[node name="Options" parent="MenuContainer/Menu/Options/About"]
 
 region_rect = Rect2( 0, 18, 65, 13 )
 
@@ -93,7 +88,7 @@ margin_top = 36.0
 margin_bottom = 50.0
 next_scene = "res://scenes/logo/Logo.tscn"
 
-[node name="Options" parent="MenuContainer/Menu/Options/Credits" index="0"]
+[node name="Options" parent="MenuContainer/Menu/Options/Credits"]
 
 region_rect = Rect2( 0, 36, 65, 13 )
 
