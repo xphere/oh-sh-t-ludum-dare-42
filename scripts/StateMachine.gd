@@ -46,6 +46,5 @@ func pop_state():
 
 
 func replace_state(state_name, context = null):
-	current_state.on_stop()
-	current_state = get_node(state_name)
-	current_state.on_start(context)
+	pop_state()
+	push_state(state_name, context)

@@ -5,23 +5,27 @@ signal right_click(selected_element)
 signal enter(element)
 signal leave(element)
 signal move(global_position)
+signal local_move(local_position)
 
 var selection_stack = []
 var current_selection
-var local_coordinates
+var local_position
 var snap
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
 		var new_position = get_global_mouse_position()
+		var local_position = null
 		if snap:
-			local_coordinates = snap.to_local(new_position)
-			if local_coordinates != null:
-				new_position = snap.to_global(local_coordinates)
+			local_position = snap.to_local(new_position)
+			if local_position != null:
+				new_position = snap.to_global(local_position)
 
 		if new_position != global_position:
 			emit_signal("move", new_position)
+			if local_position:
+				emit_signal("local_move", local_position)
 
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
@@ -53,31 +57,29 @@ func when_exited(area):
 		emit_signal("enter", current_selection)
 
 
-func on_event_move(new_position):
-	global_position = new_position
+func on_event_move(global_position):
+	$States.event("move", global_position)
+	self.global_position = global_position
+
+
+func on_event_local_move(local_position):
+	$States.event("local_move", local_position)
+	self.local_position = local_position
 
 
 func on_event_click(element):
-	if element and element.has_method("on_click"):
-		element.on_click()
 	$States.event("click", element)
 
 
 func on_event_right_click(element):
-	if element and element.has_method("on_right_click"):
-		element.on_right_click()
 	$States.event("right_click", element)
 
 
 func on_event_enter(element):
-	if element and element.has_method("on_enter"):
-		element.on_enter()
 	$States.event("enter", element)
 
 
 func on_event_leave(element):
-	if element and element.has_method("on_leave"):
-		element.on_leave()
 	$States.event("leave", element)
 
 

@@ -116,6 +116,8 @@ margin_bottom = 104.0
 
 [node name="Cursor" parent="." index="3" instance=ExtResource( 9 )]
 
+z_index = 1
+
 [node name="Camera" type="Camera2D" parent="." index="4"]
 
 position = Vector2( 80, 60 )

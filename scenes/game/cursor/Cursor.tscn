@@ -58,6 +58,8 @@ script = ExtResource( 5 )
 
 [connection signal="leave" from="." to="." method="on_event_leave"]
 
+[connection signal="local_move" from="." to="." method="on_event_local_move"]
+
 [connection signal="move" from="." to="." method="on_event_move"]
 
 [connection signal="right_click" from="." to="." method="on_event_right_click"]
