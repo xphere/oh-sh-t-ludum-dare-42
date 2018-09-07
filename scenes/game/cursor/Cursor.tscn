@@ -47,4 +47,12 @@ script = ExtResource( 4 )
 
 [connection signal="body_exited" from="." to="." method="when_exited"]
 
+[connection signal="click" from="." to="." method="on_event_click"]
+
+[connection signal="enter" from="." to="." method="on_event_enter"]
+
+[connection signal="leave" from="." to="." method="on_event_leave"]
+
+[connection signal="right_click" from="." to="." method="on_event_right_click"]
+
 
