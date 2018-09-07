@@ -5,11 +5,11 @@ var picked_package
 
 func on_start(package):
 	picked_package = package
-	picked_package.select()
+	picked_package.set_selected(true)
 
 
 func on_stop():
-	picked_package.deselect()
+	picked_package.set_selected(false)
 	picked_package = null
 
 
