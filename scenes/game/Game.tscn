@@ -7,8 +7,9 @@
 [ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/BitFactory.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/bit-factory/BitFactory.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=9]
+
 
 [sub_resource type="GDScript" id=1]
 
@@ -89,7 +90,6 @@ texture = ExtResource( 4 )
 
 [node name="Cursor" parent="." index="4" instance=ExtResource( 5 )]
 
-
 [node name="Grid" parent="." index="5" instance=ExtResource( 6 )]
 
 margin_left = 50.0
@@ -110,7 +110,7 @@ visible = false
 [node name="Timer" type="Timer" parent="Input" index="4"]
 
 process_mode = 1
-wait_time = 5.0
+wait_time = 2.0
 one_shot = false
 autostart = true
 script = SubResource( 1 )

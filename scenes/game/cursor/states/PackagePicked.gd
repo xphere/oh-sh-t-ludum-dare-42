@@ -1,5 +1,6 @@
 extends "res://scripts/State.gd"
 
+onready var cursor = $"../.."
 var picked_package
 
 
@@ -22,3 +23,8 @@ func on_event_click(element):
 
 	elif element.is_in_group("package"):
 		replace_state("PackagePicked", element)
+
+
+func on_event_enter(element):
+	if element.is_in_group("grid"):
+		push_state("PackagePlacing", element)

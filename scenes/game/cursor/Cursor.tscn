@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/game/cursor/Cursor.gd" type="Script" id=1]
 [ext_resource path="res://scripts/StateMachine.gd" type="Script" id=2]
 [ext_resource path="res://scenes/game/cursor/states/Idle.gd" type="Script" id=3]
 [ext_resource path="res://scenes/game/cursor/states/PackagePicked.gd" type="Script" id=4]
+[ext_resource path="res://scenes/game/cursor/states/PackagePlacing.gd" type="Script" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -39,6 +40,10 @@ script = ExtResource( 3 )
 
 script = ExtResource( 4 )
 
+[node name="PackagePlacing" type="Node" parent="States" index="2"]
+
+script = ExtResource( 5 )
+
 [connection signal="area_entered" from="." to="." method="when_entered"]
 
 [connection signal="area_exited" from="." to="." method="when_exited"]
@@ -52,6 +57,8 @@ script = ExtResource( 4 )
 [connection signal="enter" from="." to="." method="on_event_enter"]
 
 [connection signal="leave" from="." to="." method="on_event_leave"]
+
+[connection signal="move" from="." to="." method="on_event_move"]
 
 [connection signal="right_click" from="." to="." method="on_event_right_click"]
 

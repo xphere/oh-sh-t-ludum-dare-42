@@ -94,6 +94,7 @@ func create():
 
 	var color = random_color()
 	var piece = possible_pieces[randi() % possible_pieces.size()]
+
 	var tooltip = content.get_node("Tooltip/Pieces")
 	tooltip.position = -piece.center
 
@@ -102,6 +103,7 @@ func create():
 		var bit = color.duplicate()
 		bit.offset = position
 		tooltip.add_child(bit)
+
 		if use_mixed_colors:
 			color = random_color()
 

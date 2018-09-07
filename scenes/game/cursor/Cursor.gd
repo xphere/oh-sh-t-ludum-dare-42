@@ -4,15 +4,24 @@ signal click(selected_element)
 signal right_click(selected_element)
 signal enter(element)
 signal leave(element)
-
+signal move(global_position)
 
 var selection_stack = []
 var current_selection
+var local_coordinates
+var snap
 
 
 func _input(event):
 	if event is InputEventMouseMotion:
-		global_position = get_global_mouse_position()
+		var new_position = get_global_mouse_position()
+		if snap:
+			local_coordinates = snap.to_local(new_position)
+			if local_coordinates != null:
+				new_position = snap.to_global(local_coordinates)
+
+		if new_position != global_position:
+			emit_signal("move", new_position)
 
 	if event is InputEventMouseButton and event.is_pressed():
 		match event.button_index:
@@ -42,6 +51,10 @@ func when_exited(area):
 	else:
 		current_selection = selection_stack.pop_back()
 		emit_signal("enter", current_selection)
+
+
+func on_event_move(new_position):
+	global_position = new_position
 
 
 func on_event_click(element):
@@ -76,3 +89,7 @@ func target_of(element):
 		element = element.get_parent()
 		if element.is_in_group("target"):
 			return element
+
+
+func snap_to(element):
+	snap = element
