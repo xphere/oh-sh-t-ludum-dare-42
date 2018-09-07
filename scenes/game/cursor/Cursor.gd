@@ -45,18 +45,26 @@ func when_exited(area):
 
 
 func on_event_click(element):
+	if element and element.has_method("on_click"):
+		element.on_click()
 	$States.event("click", element)
 
 
 func on_event_right_click(element):
+	if element and element.has_method("on_right_click"):
+		element.on_right_click()
 	$States.event("right_click", element)
 
 
 func on_event_enter(element):
+	if element and element.has_method("on_enter"):
+		element.on_enter()
 	$States.event("enter", element)
 
 
 func on_event_leave(element):
+	if element and element.has_method("on_leave"):
+		element.on_leave()
 	$States.event("leave", element)
 
 
