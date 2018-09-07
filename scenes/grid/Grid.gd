@@ -17,4 +17,4 @@ func to_local(_global_position):
 
 
 func to_global(local_position):
-	return $Cells.rect_global_position + (local_position * CELL_SIZE)
+	return $Cells.rect_global_position + ((local_position + Vector2(0.5, 0.5)) * CELL_SIZE)

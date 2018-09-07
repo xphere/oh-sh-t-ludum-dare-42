@@ -93,3 +93,14 @@ func target_of(element):
 
 func snap_to(element):
 	snap = element
+
+
+func set_placeholder(placeholder):
+	if has_node("Placeholder"):
+		var previous = get_node("Placeholder")
+		remove_child(previous)
+		previous.queue_free()
+
+	if placeholder:
+		placeholder.name = "Placeholder"
+		add_child(placeholder)

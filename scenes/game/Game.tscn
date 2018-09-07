@@ -4,12 +4,11 @@
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=3]
 [ext_resource path="res://scenes/game/station/station.png" type="Texture" id=4]
-[ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/game/bit-factory/BitFactory.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=9]
-
+[ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/game/bit-factory/BitFactory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=9]
 
 [sub_resource type="GDScript" id=1]
 
@@ -38,11 +37,86 @@ func _on_timeout():
 	conveyor.add_package(package)
 "
 
-[node name="Game" type="YSort"]
+[node name="Game" type="Node2D"]
+
+[node name="Floor" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+centered = false
+
+[node name="Playground" type="YSort" parent="." index="1"]
 
 sort_enabled = true
 
-[node name="Camera" type="Camera2D" parent="."]
+[node name="Worker" parent="Playground" instance=ExtResource( 2 )]
+
+position = Vector2( 28, 39 )
+
+[node name="Balloon" type="Sprite" parent="Playground/Worker" index="1"]
+
+visible = false
+position = Vector2( 7, -16 )
+texture = ExtResource( 3 )
+
+[node name="Station" type="Sprite" parent="Playground" index="1"]
+
+position = Vector2( 28, 43 )
+texture = ExtResource( 4 )
+
+[node name="Input" parent="Playground" index="2" instance=ExtResource( 5 )]
+
+margin_top = 89.0
+margin_right = 37.0
+margin_bottom = 96.0
+
+[node name="Factory" parent="Playground/Input" index="3" instance=ExtResource( 6 )]
+
+visible = false
+
+[node name="Timer" type="Timer" parent="Playground/Input" index="4"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = true
+script = SubResource( 1 )
+conveyor_path = ".."
+factory = NodePath("../Factory")
+
+[node name="Output" parent="Playground" index="3" instance=ExtResource( 5 )]
+
+margin_left = 160.0
+margin_top = 69.0
+margin_right = 197.0
+margin_bottom = 76.0
+rect_scale = Vector2( -1, 1 )
+movement = 1
+
+[node name="Requests" parent="Playground" index="4" instance=ExtResource( 5 )]
+
+margin_left = 160.0
+margin_top = 89.0
+margin_right = 197.0
+margin_bottom = 96.0
+rect_scale = Vector2( -1, 1 )
+
+[node name="Shelf" parent="Playground" index="5" instance=ExtResource( 7 )]
+
+margin_left = 39.0
+margin_top = 8.0
+margin_right = 120.0
+margin_bottom = 22.0
+
+[node name="Grid" parent="." index="2" instance=ExtResource( 8 )]
+
+margin_left = 50.0
+margin_top = 45.0
+margin_right = 109.0
+margin_bottom = 104.0
+
+[node name="Cursor" parent="." index="3" instance=ExtResource( 9 )]
+
+[node name="Camera" type="Camera2D" parent="." index="4"]
 
 position = Vector2( 80, 60 )
 anchor_mode = 1
@@ -68,79 +142,6 @@ editor_draw_screen = true
 editor_draw_limits = true
 editor_draw_drag_margin = false
 
-[node name="Floor" type="Sprite" parent="." index="1"]
-
-texture = ExtResource( 1 )
-centered = false
-
-[node name="Worker" parent="." index="2" instance=ExtResource( 2 )]
-
-position = Vector2( 28, 39 )
-
-[node name="Balloon" type="Sprite" parent="Worker" index="1"]
-
-visible = false
-position = Vector2( 7, -16 )
-texture = ExtResource( 3 )
-
-[node name="Station" type="Sprite" parent="." index="3"]
-
-position = Vector2( 28, 43 )
-texture = ExtResource( 4 )
-
-[node name="Cursor" parent="." index="4" instance=ExtResource( 5 )]
-
-[node name="Grid" parent="." index="5" instance=ExtResource( 6 )]
-
-margin_left = 50.0
-margin_top = 45.0
-margin_right = 109.0
-margin_bottom = 104.0
-
-[node name="Input" parent="." index="6" instance=ExtResource( 7 )]
-
-margin_top = 89.0
-margin_right = 37.0
-margin_bottom = 96.0
-
-[node name="Factory" parent="Input" index="3" instance=ExtResource( 8 )]
-
-visible = false
-
-[node name="Timer" type="Timer" parent="Input" index="4"]
-
-process_mode = 1
-wait_time = 2.0
-one_shot = false
-autostart = true
-script = SubResource( 1 )
-conveyor_path = ".."
-factory = NodePath("../Factory")
-
-[node name="Output" parent="." index="7" instance=ExtResource( 7 )]
-
-margin_left = 160.0
-margin_top = 69.0
-margin_right = 197.0
-margin_bottom = 76.0
-rect_scale = Vector2( -1, 1 )
-movement = 1
-
-[node name="Requests" parent="." index="8" instance=ExtResource( 7 )]
-
-margin_left = 160.0
-margin_top = 89.0
-margin_right = 197.0
-margin_bottom = 96.0
-rect_scale = Vector2( -1, 1 )
-
-[node name="Shelf" parent="." index="9" instance=ExtResource( 9 )]
-
-margin_left = 39.0
-margin_top = 8.0
-margin_right = 120.0
-margin_bottom = 22.0
-
-[connection signal="timeout" from="Input/Timer" to="Input/Timer" method="_on_timeout"]
+[connection signal="timeout" from="Playground/Input/Timer" to="Playground/Input/Timer" method="_on_timeout"]
 
 

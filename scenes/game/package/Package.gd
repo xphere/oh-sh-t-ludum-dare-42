@@ -21,6 +21,11 @@ func from_content(new_content):
 	else:
 		tooltip = null
 
+	if content.has_node("Placeholder"):
+		placeholder = content.get_node("Placeholder").duplicate()
+	else:
+		placeholder = null
+
 
 func on_enter():
 	entered = true
@@ -35,6 +40,10 @@ func on_leave():
 func set_selected(value):
 	selected = value
 	update_state()
+
+
+func get_placeholder():
+	return placeholder.duplicate() if placeholder else null
 
 
 func update_state():

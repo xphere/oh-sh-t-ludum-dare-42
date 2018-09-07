@@ -18,42 +18,49 @@ var possible_pieces = [
 		"shape": [
 			"x",
 		],
+		"pivot": Vector2(0, 0),
 	},
 	{
 		"shape": [
 			"x ",
 			"xx",
 		],
+		"pivot": Vector2(0, 1),
 	},
 	{
 		"shape": [
 			"xx",
 			"xx",
 		],
+		"pivot": Vector2(0, 0),
 	},
 	{
 		"shape": [
 			"xx",
 			" xx",
 		],
+		"pivot": Vector2(1, 0),
 	},
 	{
 		"shape": [
 			" xx",
 			"xx",
 		],
+		"pivot": Vector2(1, 0),
 	},
 	{
 		"shape": [
 			"x  ",
 			"xxx",
 		],
+		"pivot": Vector2(0, 1),
 	},
 	{
 		"shape": [
 			"  x",
 			"xxx",
 		],
+		"pivot": Vector2(2, 1),
 	},
 ]
 
@@ -86,7 +93,7 @@ func _ready():
 				position.x += 1
 			position = Vector2(0, position.y + 1)
 		piece.positions = positions
-		piece.center = $Content/Tooltip/Pieces.scale * (max_size - Vector2(1.0, 1.0)) / 2.0
+		piece.center = $Content/Tooltip/Pieces.scale * max_size / 2.0
 
 
 func create():
@@ -98,11 +105,20 @@ func create():
 	var tooltip = content.get_node("Tooltip/Pieces")
 	tooltip.position = -piece.center
 
+	var placeholder = content.get_node("Placeholder")
+	placeholder.position = Vector2()
+
 	var use_mixed_colors = randf() < mixed_colors_probability
 	for position in piece.positions:
+
 		var bit = color.duplicate()
 		bit.offset = position
 		tooltip.add_child(bit)
+
+		bit = color.duplicate()
+		bit.offset = (position - piece.pivot) * 7
+		bit.region_rect = Rect2(1, 1, 7, 7)
+		placeholder.add_child(bit)
 
 		if use_mixed_colors:
 			color = random_color()

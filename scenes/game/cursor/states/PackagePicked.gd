@@ -1,24 +1,30 @@
 extends "res://scripts/State.gd"
 
 onready var cursor = $"../.."
-var picked_package
+var package
+var placeholder
 
 
-func on_start(package):
-	picked_package = package
-	picked_package.set_selected(true)
+func on_start(picked_package):
+	package = picked_package
+	package.set_selected(true)
+	if package.has_method("get_placeholder"):
+		placeholder = package.get_placeholder()
+		cursor.set_placeholder(placeholder)
 
 
 func on_stop():
-	picked_package.set_selected(false)
-	picked_package = null
+	cursor.set_placeholder(null)
+	placeholder = null
+	package.set_selected(false)
+	package = null
 
 
 func on_event_click(element):
 	if not element:
 		return
 
-	if element == picked_package:
+	if element == package:
 		pop_state()
 
 	elif element.is_in_group("package"):
