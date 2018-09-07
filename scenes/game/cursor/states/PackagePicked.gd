@@ -4,8 +4,13 @@ var picked_package
 
 
 func on_start(package):
-	print("Start picking ", package)
 	picked_package = package
+	picked_package.select()
+
+
+func on_stop():
+	picked_package.deselect()
+	picked_package = null
 
 
 func on_event_click(element):
