@@ -11,7 +11,7 @@
 
 script = ExtResource( 1 )
 available_colors = 7
-mix_colors = false
+mixed_colors_probability = 0.0
 
 [node name="Content" type="Position2D" parent="."]
 
@@ -45,14 +45,16 @@ __meta__ = {
 
 [node name="Pieces" type="YSort" parent="Content/Tooltip"]
 
+scale = Vector2( 1.5, 1.5 )
 sort_enabled = true
 
 [node name="Pieces" type="HBoxContainer" parent="." index="1"]
 
 anchor_left = 0.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_right = 16.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -67,7 +69,6 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 9.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -87,8 +88,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 13.0
-margin_right = 22.0
+margin_left = 4.0
+margin_right = 4.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -108,8 +109,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 26.0
-margin_right = 35.0
+margin_left = 8.0
+margin_right = 8.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -129,8 +130,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 39.0
-margin_right = 48.0
+margin_left = 12.0
+margin_right = 12.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -150,8 +151,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 52.0
-margin_right = 64.0
+margin_left = 16.0
+margin_right = 16.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
