@@ -2,22 +2,27 @@ extends Node
 
 var stack = []
 var current_state
+export(NodePath) var root_path = ".."
 export(NodePath) var initial_state = null
 
 
 func _ready():
+	var root = get_node(root_path)
+	for child in get_children():
+		child.root = root
+
 	if initial_state:
 		set_state(initial_state)
 
 
-func event(event_name, context = null):
+func event(event_name, argument = null):
 	if not current_state:
 		return
 
 	if current_state.has_method("on_event_" + event_name):
-		current_state.call("on_event_" + event_name, context)
+		current_state.call("on_event_" + event_name, argument)
 	else:
-		current_state.on_event(event_name, context)
+		current_state.on_event(event_name, argument)
 
 
 func set_state(state_name, context = null):
@@ -39,12 +44,7 @@ func push_state(state_name, context = null):
 	current_state.on_start(context)
 
 
-func pop_state():
+func pop_state(context = null):
 	current_state.on_stop()
 	current_state = stack.pop_back()
-	current_state.on_resume()
-
-
-func replace_state(state_name, context = null):
-	pop_state()
-	push_state(state_name, context)
+	current_state.on_resume(context)

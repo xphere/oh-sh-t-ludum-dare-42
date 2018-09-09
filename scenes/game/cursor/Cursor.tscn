@@ -30,6 +30,7 @@ shape = SubResource( 1 )
 [node name="States" type="Node" parent="." index="1"]
 
 script = ExtResource( 2 )
+root_path = ".."
 initial_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="States"]

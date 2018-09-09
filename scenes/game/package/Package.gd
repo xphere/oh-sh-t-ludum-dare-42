@@ -5,8 +5,8 @@ var tooltip = null
 var placeholder = null
 
 
-func from_content(new_content):
-	content = new_content
+func from_content(_content):
+	content = _content
 
 	if content.has_node("Tooltip"):
 		tooltip = content.get_node("Tooltip").duplicate()
@@ -19,14 +19,26 @@ func from_content(new_content):
 	else:
 		placeholder = null
 
+	tooltip(false)
+
 
 func get_placeholder():
 	return placeholder.duplicate() if placeholder else null
 
 
 func select(state):
-	$Pivot/Tooltip.visible = state and tooltip != null
-
 	$Pivot/Border.visible = state
+
+
+func hover(state):
+	tooltip(state)
+
 	if state and not $AnimationPlayer.is_playing():
 		$AnimationPlayer.play("Selected")
+	else:
+		$AnimationPlayer.seek(0, true)
+		$AnimationPlayer.stop()
+
+
+func tooltip(state):
+	$Pivot/Tooltip.visible = state and tooltip != null

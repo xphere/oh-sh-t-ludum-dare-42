@@ -80,8 +80,8 @@ func _ready():
 
 	for piece in possible_pieces:
 		var positions = []
-		var position = Vector2(0, 0)
-		var max_size = Vector2(0, 0)
+		var position = Vector2()
+		var max_size = Vector2()
 		for row in piece.shape:
 			for column in row:
 				if column != " ":
@@ -107,7 +107,6 @@ func create():
 
 	var use_mixed_colors = randf() < mixed_colors_probability
 	for position in piece.positions:
-
 		var bit = color.duplicate()
 		bit.offset = position
 		bit.region_rect = Rect2(4, 4, 1, 1)
