@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://scenes/game/bit-factory/BitFactory.gd" type="Script" id=1]
 [ext_resource path="res://scenes/grid/red.png" type="Texture" id=2]
@@ -6,6 +6,17 @@
 [ext_resource path="res://scenes/grid/green.png" type="Texture" id=4]
 [ext_resource path="res://scenes/grid/white.png" type="Texture" id=5]
 [ext_resource path="res://scenes/grid/black.png" type="Texture" id=6]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Position2D
+
+
+func apply_to(grid, position):
+	for bit in get_children():
+		var local_position = position + grid.from_relative(bit.position)
+		grid.fill(local_position, bit.duplicate())
+"
 
 [node name="BitFactory" type="Node2D"]
 
@@ -17,6 +28,7 @@ mixed_colors_probability = 0.0
 
 [node name="Placeholder" type="Position2D" parent="Blueprint"]
 
+script = SubResource( 1 )
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true

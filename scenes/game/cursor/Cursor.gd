@@ -48,10 +48,10 @@ func when_exited(area):
 
 	if current_selection != area:
 		selection_stack.erase(area)
-		return
 
-	if selection_stack.empty():
+	elif selection_stack.empty():
 		current_selection = null
+
 	else:
 		current_selection = selection_stack.pop_back()
 		emit_signal("enter", current_selection)
@@ -106,3 +106,7 @@ func set_placeholder(placeholder):
 	if placeholder:
 		placeholder.name = "Placeholder"
 		add_child(placeholder)
+
+
+func apply_to(element):
+	$Placeholder.apply_to(element, local_position)

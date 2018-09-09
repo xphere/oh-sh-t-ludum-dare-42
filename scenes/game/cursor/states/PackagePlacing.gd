@@ -15,3 +15,7 @@ func on_stop():
 func on_event_leave(element):
 	if element == grid:
 		pop_state()
+
+
+func on_event_click(element):
+	root.apply_to(grid)
