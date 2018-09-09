@@ -13,37 +13,16 @@ script = ExtResource( 1 )
 available_colors = 7
 mixed_colors_probability = 0.0
 
-[node name="Content" type="Position2D" parent="."]
+[node name="Blueprint" type="Position2D" parent="."]
 
-[node name="Placeholder" type="Position2D" parent="Content"]
+[node name="Placeholder" type="Position2D" parent="Blueprint"]
 
 __meta__ = {
 "_edit_group_": true,
 "_edit_lock_": true
 }
 
-[node name="Tooltip" type="Container" parent="Content" index="1"]
-
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -10.0
-margin_top = -10.0
-margin_right = -10.0
-margin_bottom = -10.0
-rect_pivot_offset = Vector2( 0, 0 )
-rect_clip_content = false
-mouse_filter = 0
-mouse_default_cursor_shape = 0
-size_flags_horizontal = 1
-size_flags_vertical = 1
-__meta__ = {
-"_edit_group_": true,
-"_edit_lock_": true
-}
-
-[node name="Pieces" type="YSort" parent="Content/Tooltip"]
+[node name="Tooltip" type="YSort" parent="Blueprint" index="1"]
 
 scale = Vector2( 1.5, 1.5 )
 sort_enabled = true
@@ -54,7 +33,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_right = 16.0
+margin_right = 31.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 1
@@ -69,6 +48,7 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
+margin_right = 3.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -80,7 +60,7 @@ size_flags_vertical = 3
 
 texture = ExtResource( 2 )
 region_enabled = true
-region_rect = Rect2( 4, 4, 1, 2 )
+region_rect = Rect2( 1, 1, 7, 7 )
 
 [node name="Blue" type="Container" parent="Pieces" index="1"]
 
@@ -88,8 +68,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 4.0
-margin_right = 4.0
+margin_left = 7.0
+margin_right = 10.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -101,7 +81,7 @@ size_flags_vertical = 3
 
 texture = ExtResource( 3 )
 region_enabled = true
-region_rect = Rect2( 4, 4, 1, 2 )
+region_rect = Rect2( 1, 1, 7, 7 )
 
 [node name="Green" type="Container" parent="Pieces" index="2"]
 
@@ -109,8 +89,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 8.0
-margin_right = 8.0
+margin_left = 14.0
+margin_right = 17.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -122,7 +102,7 @@ size_flags_vertical = 3
 
 texture = ExtResource( 4 )
 region_enabled = true
-region_rect = Rect2( 4, 4, 1, 2 )
+region_rect = Rect2( 1, 1, 7, 7 )
 
 [node name="White" type="Container" parent="Pieces" index="3"]
 
@@ -130,8 +110,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 12.0
-margin_right = 12.0
+margin_left = 21.0
+margin_right = 24.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -143,7 +123,7 @@ size_flags_vertical = 3
 
 texture = ExtResource( 5 )
 region_enabled = true
-region_rect = Rect2( 4, 4, 1, 2 )
+region_rect = Rect2( 1, 1, 7, 7 )
 
 [node name="Black" type="Container" parent="Pieces" index="4"]
 
@@ -151,8 +131,8 @@ anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 16.0
-margin_right = 16.0
+margin_left = 28.0
+margin_right = 31.0
 rect_pivot_offset = Vector2( 0, 0 )
 rect_clip_content = false
 mouse_filter = 0
@@ -164,6 +144,6 @@ size_flags_vertical = 3
 
 texture = ExtResource( 6 )
 region_enabled = true
-region_rect = Rect2( 4, 4, 1, 2 )
+region_rect = Rect2( 1, 1, 7, 7 )
 
 

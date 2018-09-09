@@ -83,41 +83,38 @@ func _ready():
 		var position = Vector2(0, 0)
 		var max_size = Vector2(0, 0)
 		for row in piece.shape:
-			max_size = Vector2(
-				max(max_size.x, row.length()),
-				max(max_size.y, position.y)
-			)
 			for column in row:
 				if column != " ":
 					positions.push_back(position)
+					max_size = Vector2(
+						max(max_size.x, position.x),
+						max(max_size.y, position.y)
+					)
 				position.x += 1
 			position = Vector2(0, position.y + 1)
 		piece.positions = positions
-		piece.center = $Content/Tooltip/Pieces.scale * max_size / 2.0
+		piece.center = max_size / 2.0
 
 
 func create():
-	var content = $Content.duplicate()
+	var content = $Blueprint.duplicate()
 
 	var color = random_color()
 	var piece = possible_pieces[randi() % possible_pieces.size()]
-
-	var tooltip = content.get_node("Tooltip/Pieces")
-	tooltip.position = -piece.center
-
+	var tooltip = content.get_node("Tooltip")
 	var placeholder = content.get_node("Placeholder")
-	placeholder.position = Vector2()
+	tooltip.position = -piece.center
 
 	var use_mixed_colors = randf() < mixed_colors_probability
 	for position in piece.positions:
 
 		var bit = color.duplicate()
 		bit.offset = position
+		bit.region_rect = Rect2(4, 4, 1, 1)
 		tooltip.add_child(bit)
 
 		bit = color.duplicate()
 		bit.offset = (position - piece.pivot) * 7
-		bit.region_rect = Rect2(1, 1, 7, 7)
 		placeholder.add_child(bit)
 
 		if use_mixed_colors:
