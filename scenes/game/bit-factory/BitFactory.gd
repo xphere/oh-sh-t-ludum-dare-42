@@ -76,6 +76,7 @@ func _ready():
 	}
 	for color in all_colors.keys():
 		if available_colors & color:
+			all_colors[color].set_meta("color", color)
 			colors.push_back(all_colors[color])
 
 	for piece in possible_pieces:
