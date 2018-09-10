@@ -49,6 +49,10 @@ region_rect = Rect2( 1, 1, 7, 7 )
 axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
+[node name="Placeholder" type="Position2D" parent="Cells"]
+
+z_index = 64
+
 [node name="Border" type="NinePatchRect" parent="." index="1"]
 
 modulate = Color( 0.231373, 0.231373, 0.466667, 1 )

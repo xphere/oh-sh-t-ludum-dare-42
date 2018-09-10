@@ -199,3 +199,18 @@ func diagonals(local, color, directions):
 
 func bit_color(local):
 	return bits[local].get_meta("color") if bits.has(local) else null
+
+
+func select(bits):
+	for child in $Cells/Placeholder.get_children():
+		child.queue_free()
+
+	for bit in bits:
+		var border = bit.duplicate()
+		border.texture = preload("res://scenes/grid/border.png")
+		$Cells/Placeholder.add_child(border)
+
+
+func unselect_all():
+	for child in $Cells/Placeholder.get_children():
+		child.queue_free()
