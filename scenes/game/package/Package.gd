@@ -15,7 +15,7 @@ func from_content(_content):
 		tooltip = null
 
 	if content.has_node("Placeholder"):
-		placeholder = content.get_node("Placeholder").duplicate()
+		placeholder = content.get_node("Placeholder")
 	else:
 		placeholder = null
 

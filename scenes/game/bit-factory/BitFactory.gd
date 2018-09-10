@@ -113,7 +113,7 @@ func create():
 		tooltip.add_child(bit)
 
 		bit = color.duplicate()
-		bit.offset = (position - piece.pivot) * 7
+		bit.position = (position - piece.pivot) * 7
 		placeholder.add_child(bit)
 
 		if use_mixed_colors:

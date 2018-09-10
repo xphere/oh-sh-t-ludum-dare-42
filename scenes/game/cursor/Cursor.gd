@@ -11,6 +11,7 @@ var selection_stack = []
 var current_selection
 var local_position
 var snap
+var placeholder
 
 
 func _input(event):
@@ -101,24 +102,27 @@ func to_local_position(global_position):
 	return snap.to_local(global_position) if snap else null
 
 
-func set_placeholder(placeholder):
-	if has_node("Placeholder"):
-		var previous = get_node("Placeholder")
-		remove_child(previous)
-		previous.queue_free()
-
+func set_placeholder(_placeholder):
 	if placeholder:
-		placeholder.name = "Placeholder"
+		remove_child(placeholder)
+		placeholder.queue_free()
+
+	placeholder = _placeholder
+	if placeholder:
 		add_child(placeholder)
 
 
-func reset():
-	$Placeholder.reset()
+func placeholder_reset():
+	placeholder.reset()
 
 
-func check_into(element):
-	return local_position != null and $Placeholder.check_into(element, local_position)
+func placeholder_check_into(element):
+	return local_position != null and placeholder.check_into(element, local_position)
 
 
-func apply_to(element):
-	$Placeholder.apply_to(element, local_position)
+func placeholder_apply_to(element):
+	placeholder.apply_to(element, local_position)
+
+
+func placeholder_rotate():
+	placeholder.rotate()

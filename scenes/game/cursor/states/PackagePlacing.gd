@@ -12,7 +12,7 @@ func on_start(_grid):
 
 func on_stop():
 	root.snap_to(null)
-	root.reset()
+	root.placeholder_reset()
 
 
 func on_event_leave(element):
@@ -22,8 +22,13 @@ func on_event_leave(element):
 
 func on_event_click(element):
 	if correct:
-		root.apply_to(grid)
+		root.placeholder_apply_to(grid)
 		pop_state(true)
+
+
+func on_event_right_click(element):
+	root.placeholder_rotate()
+	check_if_applies()
 
 
 func on_event_local_move(position):
@@ -31,4 +36,4 @@ func on_event_local_move(position):
 
 
 func check_if_applies():
-	correct = root.check_into(grid)
+	correct = root.placeholder_check_into(grid)

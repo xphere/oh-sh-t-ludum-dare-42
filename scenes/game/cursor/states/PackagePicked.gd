@@ -38,6 +38,10 @@ func on_event_click(element):
 		push_state(name, element)
 
 
+func on_event_right_click(element):
+	root.placeholder_rotate()
+
+
 func on_event_enter(element):
 	if element.is_in_group("grid"):
 		push_state("PackagePlacing", element)
