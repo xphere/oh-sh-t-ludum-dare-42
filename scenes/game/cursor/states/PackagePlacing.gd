@@ -17,12 +17,13 @@ func on_stop():
 
 func on_event_leave(element):
 	if element == grid:
-		pop_state()
+		pop_state(false)
 
 
 func on_event_click(element):
 	if correct:
 		root.apply_to(grid)
+		pop_state(true)
 
 
 func on_event_local_move(position):

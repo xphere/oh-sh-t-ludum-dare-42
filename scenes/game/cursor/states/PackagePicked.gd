@@ -15,6 +15,12 @@ func on_start(_picked):
 		root.set_placeholder(placeholder)
 
 
+func on_resume(placed):
+	if placed:
+		picked.queue_free()
+		set_state("Idle")
+
+
 func on_stop():
 	root.set_placeholder(null)
 	picked.select(false)
