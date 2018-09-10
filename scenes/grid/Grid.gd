@@ -111,6 +111,40 @@ func fill(local_position, cell):
 	set_process(true)
 
 
+func remove(cell):
+	for index in bits.keys():
+		if bits[index] == cell:
+			bits.erase(index)
+			break
+	cell.queue_free()
+	set_process(true)
+
+
+func adjacents(local_position):
+	return adjacents_at(bit_color(local_position), local_position, {})
+
+
+func adjacents_at(color, local_position, checked):
+	if not color:
+		return []
+
+	if checked.has(local_position):
+		return []
+
+	checked[local_position] = true
+
+	if bit_color(local_position) != color:
+		return []
+
+	return (
+		adjacents_at(color, local_position - Vector2(1, 0), checked) +
+		adjacents_at(color, local_position + Vector2(0, 1), checked) +
+		adjacents_at(color, local_position + Vector2(1, 0), checked) +
+		adjacents_at(color, local_position - Vector2(0, 1), checked) +
+		[bits[local_position]]
+	)
+
+
 func _process(delta):
 	update_cells()
 	set_process(false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=2]
@@ -6,36 +6,11 @@
 [ext_resource path="res://scenes/game/station/station.png" type="Texture" id=4]
 [ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/game/bit-factory/BitFactory.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=9]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Timer
-
-export(NodePath) var conveyor_path = \"..\" setget set_conveyor_path
-export(NodePath) var factory
-
-
-func set_conveyor_path(path):
-	if path != null:
-		conveyor_path = path
-
-
-func _on_timeout():
-	var conveyor = get_node(conveyor_path)
-
-	if conveyor.at_full_capacity():
-		return
-
-	var package = preload(\"res://scenes/game/package/Package.tscn\").instance()
-
-	if factory:
-		package.from_content(get_node(factory).create())
-
-	conveyor.add_package(package)
-"
+[ext_resource path="res://scenes/game/Timer.gd" type="Script" id=7]
+[ext_resource path="res://scenes/game/request-factory/RequestFactory.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=11]
 
 [node name="Game" type="Node2D"]
 
@@ -79,7 +54,7 @@ process_mode = 1
 wait_time = 2.0
 one_shot = false
 autostart = true
-script = SubResource( 1 )
+script = ExtResource( 7 )
 conveyor_path = ".."
 factory = NodePath("../Factory")
 
@@ -100,21 +75,36 @@ margin_right = 197.0
 margin_bottom = 96.0
 rect_scale = Vector2( -1, 1 )
 
-[node name="Shelf" parent="Playground" index="5" instance=ExtResource( 7 )]
+[node name="Factory" parent="Playground/Requests" index="3" instance=ExtResource( 8 )]
+
+visible = false
+available_colors = 7
+
+[node name="Timer" type="Timer" parent="Playground/Requests" index="4"]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = false
+autostart = true
+script = ExtResource( 7 )
+conveyor_path = ".."
+factory = NodePath("../Factory")
+
+[node name="Shelf" parent="Playground" index="5" instance=ExtResource( 9 )]
 
 margin_left = 39.0
 margin_top = 8.0
 margin_right = 120.0
 margin_bottom = 22.0
 
-[node name="Grid" parent="." index="2" instance=ExtResource( 8 )]
+[node name="Grid" parent="." index="2" instance=ExtResource( 10 )]
 
 margin_left = 50.0
 margin_top = 45.0
 margin_right = 109.0
 margin_bottom = 104.0
 
-[node name="Cursor" parent="." index="3" instance=ExtResource( 9 )]
+[node name="Cursor" parent="." index="3" instance=ExtResource( 11 )]
 
 z_index = 1
 
@@ -145,5 +135,7 @@ editor_draw_limits = true
 editor_draw_drag_margin = false
 
 [connection signal="timeout" from="Playground/Input/Timer" to="Playground/Input/Timer" method="_on_timeout"]
+
+[connection signal="timeout" from="Playground/Requests/Timer" to="Playground/Requests/Timer" method="_on_timeout"]
 
 

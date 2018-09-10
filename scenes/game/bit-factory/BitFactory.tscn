@@ -24,7 +24,20 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Tooltip" type="YSort" parent="Blueprint" index="1"]
+[node name="Tooltip" type="Container" parent="Blueprint" index="1"]
+
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+rect_pivot_offset = Vector2( 0, 0 )
+rect_clip_content = false
+mouse_filter = 0
+mouse_default_cursor_shape = 0
+size_flags_horizontal = 1
+size_flags_vertical = 1
+
+[node name="Bits" type="YSort" parent="Blueprint/Tooltip"]
 
 scale = Vector2( 1.5, 1.5 )
 sort_enabled = true

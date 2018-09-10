@@ -102,16 +102,16 @@ func create():
 
 	var color = random_color()
 	var piece = possible_pieces[randi() % possible_pieces.size()]
-	var tooltip = content.get_node("Tooltip")
+	var bits = content.get_node("Tooltip/Bits")
 	var placeholder = content.get_node("Placeholder")
-	tooltip.position = -piece.center
+	bits.position = -piece.center
 
 	var use_mixed_colors = randf() < mixed_colors_probability
 	for position in piece.positions:
 		var bit = color.duplicate()
 		bit.offset = position
 		bit.region_rect = Rect2(4, 4, 1, 1)
-		tooltip.add_child(bit)
+		bits.add_child(bit)
 
 		bit = color.duplicate()
 		bit.position = (position - piece.pivot) * 7
