@@ -38,6 +38,10 @@ func to_global(local_position):
 	return $Cells.rect_global_position + to_relative(local_position)
 
 
+func is_free(local_position):
+	return in_grid(local_position) and not bits.has(local_position)
+
+
 func fill(local_position, cell):
 	bits[local_position] = cell
 	cell.position = to_relative(local_position)

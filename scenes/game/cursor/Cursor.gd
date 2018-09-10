@@ -16,15 +16,14 @@ var snap
 func _input(event):
 	if event is InputEventMouseMotion:
 		var new_position = get_global_mouse_position()
-		var local_position = null
-		if snap:
-			local_position = snap.to_local(new_position)
-			if local_position != null:
-				new_position = snap.to_global(local_position)
+
+		var local_position = to_local_position(new_position)
+		if local_position != null:
+			new_position = snap.to_global(local_position)
 
 		if new_position != global_position:
 			emit_signal("move", new_position)
-			if local_position:
+			if local_position != null:
 				emit_signal("local_move", local_position)
 
 	if event is InputEventMouseButton and event.is_pressed():
@@ -58,13 +57,13 @@ func when_exited(area):
 
 
 func on_event_move(global_position):
-	$States.event("move", global_position)
 	self.global_position = global_position
+	$States.event("move", global_position)
 
 
 func on_event_local_move(local_position):
-	$States.event("local_move", local_position)
 	self.local_position = local_position
+	$States.event("local_move", local_position)
 
 
 func on_event_click(element):
@@ -95,6 +94,11 @@ func target_of(element):
 
 func snap_to(element):
 	snap = element
+	local_position = to_local_position(global_position)
+
+
+func to_local_position(global_position):
+	return snap.to_local(global_position) if snap else null
 
 
 func set_placeholder(placeholder):
@@ -106,6 +110,14 @@ func set_placeholder(placeholder):
 	if placeholder:
 		placeholder.name = "Placeholder"
 		add_child(placeholder)
+
+
+func reset():
+	$Placeholder.reset()
+
+
+func check_into(element):
+	return local_position != null and $Placeholder.check_into(element, local_position)
 
 
 func apply_to(element):
