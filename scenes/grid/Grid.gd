@@ -78,7 +78,7 @@ func from_relative(relative_position):
 
 
 func to_relative(relative_position):
-	return (relative_position + Vector2(0.5, 0.5)) * CELL_SIZE
+	return (relative_position * CELL_SIZE) + (CELL_SIZE / 2.0) - Vector2(0.5, 0.5)
 
 
 func to_local(_global_position):
@@ -160,7 +160,7 @@ func update_cells():
 		if diagonals:
 			region = corners[directions][diagonals]
 
-		bits[local].region_rect.position = (region * 8) + Vector2(1, 1)
+		bits[local].region_rect.position = region * 8
 
 
 func mask(value, mask):

@@ -9,7 +9,7 @@ func check_into(grid, position):
 		var local_position = grid.to_local(child.global_position)
 		if local_position == null or not grid.is_free(local_position):
 			result = false
-			child.region_rect.position = Vector2(57, 41)
+			child.region_rect.position = Vector2(56, 40)
 
 	return result
 
@@ -30,4 +30,4 @@ func rotate():
 
 func reset():
 	for bit in get_children():
-		bit.region_rect.position = Vector2(1, 1)
+		bit.region_rect.position = Vector2(0, 0)
