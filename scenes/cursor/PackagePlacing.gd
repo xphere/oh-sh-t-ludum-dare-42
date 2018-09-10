@@ -23,11 +23,15 @@ func on_event_leave(element):
 func on_event_click(element):
 	if correct:
 		root.placeholder_apply_to(grid)
+		root.emit_signal("package_placed")
 		pop_state(true)
+	else:
+		root.emit_signal("package_wrong_placed")
 
 
 func on_event_right_click(element):
 	root.placeholder_rotate()
+	root.emit_signal("package_rotated")
 	check_if_applies()
 
 

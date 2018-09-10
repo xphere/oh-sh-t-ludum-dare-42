@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://scenes/shelf/Shelf.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/cursor/Cursor.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/game/piece-arrived.wav" type="AudioStream" id=12]
+[ext_resource path="res://scenes/game/piece-placed.wav" type="AudioStream" id=13]
+[ext_resource path="res://scenes/game/piece-rotated.wav" type="AudioStream" id=14]
+[ext_resource path="res://scenes/game/piece-wrong.wav" type="AudioStream" id=15]
 
 [node name="Game" type="Node2D"]
 
@@ -108,6 +112,42 @@ margin_bottom = 104.0
 
 z_index = 1
 
+[node name="Arrived" type="AudioStreamPlayer" parent="Cursor" index="2"]
+
+stream = ExtResource( 12 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Sound"
+
+[node name="Placed" type="AudioStreamPlayer" parent="Cursor" index="3"]
+
+stream = ExtResource( 13 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Sound"
+
+[node name="Rotated" type="AudioStreamPlayer" parent="Cursor" index="4"]
+
+stream = ExtResource( 14 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Sound"
+
+[node name="Wrong" type="AudioStreamPlayer" parent="Cursor" index="5"]
+
+stream = ExtResource( 15 )
+volume_db = 0.0
+pitch_scale = 1.0
+autoplay = false
+mix_target = 0
+bus = "Sound"
+
 [node name="Camera" type="Camera2D" parent="." index="4"]
 
 position = Vector2( 80, 60 )
@@ -137,5 +177,13 @@ editor_draw_drag_margin = false
 [connection signal="timeout" from="Playground/Input/Timer" to="Playground/Input/Timer" method="_on_timeout"]
 
 [connection signal="timeout" from="Playground/Requests/Timer" to="Playground/Requests/Timer" method="_on_timeout"]
+
+[connection signal="package_picked" from="Cursor" to="Cursor/Arrived" method="play"]
+
+[connection signal="package_placed" from="Cursor" to="Cursor/Placed" method="play"]
+
+[connection signal="package_rotated" from="Cursor" to="Cursor/Rotated" method="play"]
+
+[connection signal="package_wrong_placed" from="Cursor" to="Cursor/Wrong" method="play"]
 
 

@@ -7,6 +7,11 @@ signal leave(element)
 signal move(global_position)
 signal local_move(local_position)
 
+signal package_picked()
+signal package_rotated()
+signal package_placed()
+signal package_wrong_placed()
+
 var selection_stack = []
 var current_selection
 var local_position

@@ -14,6 +14,8 @@ func on_start(_picked):
 		var placeholder = picked.get_placeholder()
 		root.set_placeholder(placeholder)
 
+	root.emit_signal("package_picked")
+
 
 func on_resume(placed):
 	if placed:
@@ -40,6 +42,7 @@ func on_event_click(element):
 
 func on_event_right_click(element):
 	root.placeholder_rotate()
+	root.emit_signal("package_rotated")
 
 
 func on_event_enter(element):
