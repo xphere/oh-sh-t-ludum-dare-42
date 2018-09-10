@@ -3,14 +3,14 @@
 [ext_resource path="res://scenes/game/floor.png" type="Texture" id=1]
 [ext_resource path="res://scenes/worker/Worker.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/worker/oh-shit.png" type="Texture" id=3]
-[ext_resource path="res://scenes/game/station/station.png" type="Texture" id=4]
-[ext_resource path="res://scenes/game/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/game/bit-factory/BitFactory.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/station/station.png" type="Texture" id=4]
+[ext_resource path="res://scenes/conveyor-belt/ConveyorBelt.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/bit-factory/BitFactory.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/game/Timer.gd" type="Script" id=7]
-[ext_resource path="res://scenes/game/request-factory/RequestFactory.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/game/shelf/Shelf.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/request-factory/RequestFactory.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/shelf/Shelf.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/grid/Grid.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/game/cursor/Cursor.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/cursor/Cursor.tscn" type="PackedScene" id=11]
 
 [node name="Game" type="Node2D"]
 
@@ -41,7 +41,7 @@ texture = ExtResource( 4 )
 [node name="Input" parent="Playground" index="2" instance=ExtResource( 5 )]
 
 margin_top = 89.0
-margin_right = 37.0
+margin_right = 40.0
 margin_bottom = 96.0
 
 [node name="Factory" parent="Playground/Input" index="3" instance=ExtResource( 6 )]
@@ -62,7 +62,7 @@ factory = NodePath("../Factory")
 
 margin_left = 160.0
 margin_top = 69.0
-margin_right = 197.0
+margin_right = 201.0
 margin_bottom = 76.0
 rect_scale = Vector2( -1, 1 )
 movement = 1
@@ -71,7 +71,7 @@ movement = 1
 
 margin_left = 160.0
 margin_top = 89.0
-margin_right = 197.0
+margin_right = 201.0
 margin_bottom = 96.0
 rect_scale = Vector2( -1, 1 )
 

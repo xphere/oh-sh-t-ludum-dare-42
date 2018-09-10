@@ -15,7 +15,7 @@ func _on_timeout():
 	if conveyor.at_full_capacity():
 		return
 
-	var package = preload("res://scenes/game/package/Package.tscn").instance()
+	var package = preload("res://scenes/package/Package.tscn").instance()
 
 	if factory:
 		package.from_content(get_node(factory).create())
